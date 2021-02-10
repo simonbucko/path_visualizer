@@ -3,43 +3,51 @@ import React, { useState } from "react";
 
 //memo will only render only if props or state changes, will not render if
 //parent element renders
-const Node = React.memo(
-  ({
-    id,
-    isVisited,
-    isStartNodeSet,
-    isStartNode,
-    isEndNode,
-    handleMousePressed,
-    startNode,
-  }) => {
-    const [isStart, setIsStart] = useState(isStartNode);
+const Node = ({
+  id,
+  isVisited,
+  isStartNode,
+  isEndNode,
+  handleMousePressed,
+  startNodePosition,
+  handleMouseEntered,
+  handleMouseRelease,
+}) => {
+  //   const [isStart, setIsStart] = useState(isStartNode);
 
-    const onMouseDown = () => {
-      const currentPosition = id.split(" ");
-      if (isStartNodeSet) return;
-      handleMousePressed(id);
-      setIsStart(!isStart);
-    };
+  const onMouseDown = (e) => {
+    e.preventDefault();
+    handleMousePressed(id);
+  };
 
-    const onMouseEnter = () => {
-      const currentPosition = id.split(" ");
-    };
+  const onMouseEnter = (e) => {
+    e.preventDefault();
+    handleMouseEntered(id);
+  };
 
-    const startNodeClass = isStart && "startingNode";
-    const endNodeClass = isEndNode && "endingNode";
+  const onMouseUp = (e) => {
+    e.preventDefault();
+    document.getElementById(id).click();
+    handleMouseRelease(id);
+  };
 
-    return (
-      <div
-        className={`node ${startNodeClass} ${endNodeClass}`}
-        onMouseDown={onMouseDown}
-        onMouseEnter={onMouseEnter}
-      ></div>
-    );
-  },
-  (prevProps, nextProps) => {
-    //if returns false render, if returns true will not render
-  }
-);
+  const startNodeClass = isStartNode && "startingNode";
+  const endNodeClass = isEndNode && "endingNode";
+
+  return (
+    <div
+      id={id}
+      className={`node ${startNodeClass} ${endNodeClass}`}
+      onMouseDown={(e) => onMouseDown(e)}
+      onMouseEnter={(e) => onMouseEnter(e)}
+      onMouseUp={(e) => onMouseUp(e)}
+    ></div>
+  );
+};
+//   ,
+//   (prevProps, nextProps) => {
+//     //if returns false render, if returns true will not render
+//   }
+// );
 
 export default Node;

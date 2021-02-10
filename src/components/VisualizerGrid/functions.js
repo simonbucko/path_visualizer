@@ -15,6 +15,7 @@ export const createGrid = (rows, columns) => {
                     visitedFrom: "",
                 };
             } else if (i == 7 && j == 30) {
+                //create end node
                 grid[i][j] = {
                     id: `${i} ${j}`,
                     row: i,

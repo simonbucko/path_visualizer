@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //components
 import Node from "../Node/Node";
 //mui
@@ -10,19 +10,46 @@ import { createGrid } from "./functions";
 const GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
 
 const VisualizerGrid = () => {
-  const [isStartNodeSet, setIsStartNodeSet] = useState(false);
   const [startNodePosition, setStartNodePosition] = useState({
-    row: null,
-    column: null,
+    row: 7,
+    column: 10,
   });
-  const [mouseMovement, setMouseMovement] = useState("");
+  const [mouseAction, setMouseAction] = useState("");
+
+  useEffect(() => {
+    console.log(mouseAction);
+  }, [mouseAction]);
 
   const handleMousePressed = (id) => {
-    if (!isStartNodeSet) {
-      setIsStartNodeSet(true);
-      const [row, column] = id.split(" ");
-      GRID[row][column].isStartNode = true;
+    const [row, column] = id.split(" ");
+    //handle moving start node
+    if (row == startNodePosition.row && column == startNodePosition.column) {
+      setMouseAction("DRAGING_START_NODE");
+      console.log("mouse pressed");
     }
+  };
+
+  const handleMouseEntered = (id) => {
+    const [row, column] = id.split(" ");
+
+    switch (mouseAction) {
+      case "DRAGING_START_NODE":
+        console.log("inside switch");
+        GRID[startNodePosition.row][
+          startNodePosition.column
+        ].isStartNode = false;
+        setStartNodePosition({ row: parseInt(row), column: parseInt(column) });
+        GRID[row][column].isStartNode = true;
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const handleMouseRelease = (id) => {
+    setMouseAction("");
+    console.log("mouse up");
   };
 
   return (
@@ -33,11 +60,12 @@ const VisualizerGrid = () => {
             key={node.id}
             id={node.id}
             isVisited={node.isVisited}
-            isStartNodeSet={isStartNodeSet}
             startNodePosition={startNodePosition}
             isStartNode={node.isStartNode}
             isEndNode={node.isEndNode}
             handleMousePressed={handleMousePressed}
+            handleMouseEntered={handleMouseEntered}
+            handleMouseRelease={handleMouseRelease}
           />
         ));
       })}
