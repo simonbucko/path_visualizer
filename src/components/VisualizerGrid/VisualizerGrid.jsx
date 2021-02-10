@@ -11,6 +11,11 @@ const GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
 
 const VisualizerGrid = () => {
   const [isStartNodeSet, setIsStartNodeSet] = useState(false);
+  const [startNodePosition, setStartNodePosition] = useState({
+    row: null,
+    column: null,
+  });
+  const [mouseMovement, setMouseMovement] = useState("");
 
   const handleMousePressed = (id) => {
     if (!isStartNodeSet) {
@@ -19,6 +24,7 @@ const VisualizerGrid = () => {
       GRID[row][column].isStartNode = true;
     }
   };
+
   return (
     <div className={"grid"}>
       {GRID.map((row) => {
@@ -28,6 +34,8 @@ const VisualizerGrid = () => {
             id={node.id}
             isVisited={node.isVisited}
             isStartNodeSet={isStartNodeSet}
+            startNodePosition={startNodePosition}
+            isStartNode={node.isStartNode}
             isEndNode={node.isEndNode}
             handleMousePressed={handleMousePressed}
           />
