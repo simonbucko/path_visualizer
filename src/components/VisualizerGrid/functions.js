@@ -1,10 +1,12 @@
+import { DEFAULT_START_NODE, DEFAULT_END_NODE } from './constants'
 export const createGrid = (rows, columns) => {
+
     const grid = [[]];
     for (let i = 0; i < rows; i++) {
         grid[i] = [];
         for (let j = 0; j < columns; j++) {
             //create start node
-            if (i == 7 && j == 10) {
+            if (i == DEFAULT_START_NODE.row && j == DEFAULT_START_NODE.column) {
                 grid[i][j] = {
                     id: `${i} ${j}`,
                     row: i,
@@ -15,7 +17,7 @@ export const createGrid = (rows, columns) => {
                     isWall: false,
                     visitedFrom: "",
                 };
-            } else if (i == 7 && j == 30) {
+            } else if (i == DEFAULT_END_NODE.row && j == DEFAULT_END_NODE.column) {
                 //create end node
                 grid[i][j] = {
                     id: `${i} ${j}`,
@@ -43,15 +45,3 @@ export const createGrid = (rows, columns) => {
     }
     return grid;
 };
-
-export const findEmpyNode = (grid) => {
-    let emptyNode = {};
-    for (let i = 0; i < grid.length; i++) {
-        for (let j = 0; j < grid[i].length; j++) {
-            if (!(grid[i][j].isWall)) {
-                emptyNode = { row: i, column: j };
-                return emptyNode;
-            }
-        }
-    }
-}

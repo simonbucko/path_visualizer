@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 //components
 import Node from "../Node/Node";
 //mui
@@ -10,26 +10,35 @@ import {
   DRAGGING_START_NODE,
   DRAGGING_END_NODE,
   DRAWING_WALL,
+  DEFAULT_START_NODE,
+  DEFAULT_END_NODE,
 } from "./constants";
-import { createGrid, findEmpyNode } from "./functions";
+import { createGrid } from "./functions";
+import { BFS } from "../../alogorithms/BFS";
 
 const GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
 
-const VisualizerGrid = () => {
+const VisualizerGrid = ({ isAlgoRunning }) => {
   //for forcing react to update
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
 
-  const [startNodePosition, setStartNodePosition] = useState({
-    row: 7,
-    column: 10,
-  });
-  const [endNodePosition, setEndNodePosition] = useState({
-    row: 7,
-    column: 30,
-  });
+  const [startNodePosition, setStartNodePosition] = useState(
+    DEFAULT_START_NODE
+  );
+  const [endNodePosition, setEndNodePosition] = useState(DEFAULT_END_NODE);
   const [mouseAction, setMouseAction] = useState("");
 
+  useEffect(() => {
+    if (isAlgoRunning) {
+      const startNode = GRID[startNodePosition.row][startNodePosition.column];
+      const endNode = GRID[endNodePosition.row][endNodePosition.column];
+      const path = BFS(GRID, startNode, endNode);
+      console.log(path);
+    }
+  }, [isAlgoRunning]);
+
+  //onMouseDown
   const handleMousePressed = (id) => {
     const [row, column] = id.split(" ");
     //handle moving start node
@@ -47,7 +56,7 @@ const VisualizerGrid = () => {
       forceUpdate();
     }
   };
-
+  //onMouseEnter
   const handleMouseEntered = (id) => {
     const [row, column] = id.split(" ");
     //prevent start node to be end node
@@ -78,8 +87,6 @@ const VisualizerGrid = () => {
     )
       return;
 
-    //TODO:dont allow paint startNode/EndNod with wall
-
     switch (mouseAction) {
       case DRAGGING_START_NODE:
         GRID[startNodePosition.row][
@@ -101,7 +108,7 @@ const VisualizerGrid = () => {
         break;
     }
   };
-
+  //onMouseUp
   const handleMouseRelease = (id) => {
     setMouseAction("");
   };
