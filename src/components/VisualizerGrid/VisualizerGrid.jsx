@@ -50,9 +50,35 @@ const VisualizerGrid = () => {
 
   const handleMouseEntered = (id) => {
     const [row, column] = id.split(" ");
-    //TODO:dont allow to startNode = endNode
+    //prevent start node to be end node
+    if (
+      mouseAction == DRAGGING_START_NODE &&
+      endNodePosition.row == row &&
+      endNodePosition.column == column
+    )
+      return;
+    //prevent end node to be start node
+    if (
+      mouseAction == DRAGGING_END_NODE &&
+      startNodePosition.row == row &&
+      startNodePosition.column == column
+    )
+      return;
+    //prevent to put start node/end node to wall
+    if (
+      (mouseAction == DRAGGING_END_NODE ||
+        mouseAction == DRAGGING_START_NODE) &&
+      GRID[row][column].isWall
+    )
+      return;
+    //prevent to draw wall in start/end node
+    if (
+      mouseAction == DRAWING_WALL &&
+      (GRID[row][column].isStartNode || GRID[row][column].isEndNode)
+    )
+      return;
+
     //TODO:dont allow paint startNode/EndNod with wall
-    //TODO:dont allow put startNode/EndNod to wall
 
     switch (mouseAction) {
       case DRAGGING_START_NODE:
@@ -77,39 +103,6 @@ const VisualizerGrid = () => {
   };
 
   const handleMouseRelease = (id) => {
-    switch (mouseAction) {
-      //prevent start node to be end node
-      case DRAGGING_START_NODE:
-        if (
-          startNodePosition.row == endNodePosition.row &&
-          startNodePosition.column == endNodePosition.column
-        ) {
-          GRID[startNodePosition.row][
-            startNodePosition.column
-          ].isStartNode = false;
-          const { row, column } = findEmpyNode(GRID);
-          setStartNodePosition({ row, column });
-          GRID[row][column].isStartNode = true;
-          break;
-        }
-        break;
-      case DRAGGING_END_NODE:
-        if (
-          startNodePosition.row == endNodePosition.row &&
-          startNodePosition.column == endNodePosition.column
-        ) {
-          GRID[endNodePosition.row][endNodePosition.column].isEndNode = false;
-          const { row, column } = findEmpyNode(GRID);
-          setEndNodePosition({ row, column });
-          GRID[row][column].isEndNode = true;
-          break;
-        }
-        break;
-      case DRAWING_WALL:
-
-      default:
-        break;
-    }
     setMouseAction("");
   };
 
