@@ -1,6 +1,5 @@
 import { DEFAULT_START_NODE, DEFAULT_END_NODE } from './constants'
 export const createGrid = (rows, columns) => {
-
     const grid = [[]];
     for (let i = 0; i < rows; i++) {
         grid[i] = [];

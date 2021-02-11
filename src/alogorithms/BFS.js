@@ -8,9 +8,12 @@ const vectorX = [0, 1, 0, -1];
 const vectorY = [1, 0, -1, 0];
 
 export const BFS = (grid, startNode, endNode) => {
+    path = [];
+    queue = [];
+    solution = [];
     let wasSolvable = false;
     queue.push(grid[startNode.row][startNode.column]);
-    while (queue.length > 0) {
+    while (!!queue.length) {
         const currentNode = queue.shift();
         solution.push(currentNode);
         grid[currentNode.row][currentNode.column].isVisited = true;
@@ -29,7 +32,7 @@ export const BFS = (grid, startNode, endNode) => {
             currentNode = grid[row][column];
         }
     }
-
+    clearIsVisited(grid)
     return path;
 }
 
@@ -48,6 +51,16 @@ const findValidNodes = (node, grid) => {
     }
 }
 
+const clearIsVisited = (grid) => {
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            grid[i][j].isVisited = false;
+        }
+    }
+}
+
 //need funtion to solve it and return array how were visited
 //need funtion to rendering visitedNodes from arry
 //store path along the way to be able to figure path
+
+//error moze byt kvoli tomu zeee tym ze si vytvaras dalsie linky pre objekty tak tie ovplyvnuju ich spravanie
