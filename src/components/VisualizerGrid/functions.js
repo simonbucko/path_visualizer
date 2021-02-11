@@ -12,6 +12,7 @@ export const createGrid = (rows, columns) => {
                     isVisited: false,
                     isStartNode: true,
                     isEndNode: false,
+                    isWall: false,
                     visitedFrom: "",
                 };
             } else if (i == 7 && j == 30) {
@@ -23,6 +24,7 @@ export const createGrid = (rows, columns) => {
                     isVisited: false,
                     isStartNode: false,
                     isEndNode: true,
+                    isWall: false,
                     visitedFrom: "",
                 };
             } else {
@@ -33,6 +35,7 @@ export const createGrid = (rows, columns) => {
                     isVisited: false,
                     isStartNode: false,
                     isEndNode: false,
+                    isWall: false,
                     visitedFrom: "",
                 };
             }
@@ -40,3 +43,15 @@ export const createGrid = (rows, columns) => {
     }
     return grid;
 };
+
+export const findEmpyNode = (grid) => {
+    let emptyNode = {};
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            if (!(grid[i][j].isWall)) {
+                emptyNode = { row: i, column: j };
+                return emptyNode;
+            }
+        }
+    }
+}

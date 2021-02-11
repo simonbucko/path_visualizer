@@ -1,4 +1,5 @@
-export const DRAGING_START_NODE = 'DRAGING_START_NODE';
-export const DRAGING_END_NODE = 'DRAGING_END_NODE';
+export const DRAGGING_START_NODE = 'DRAGGING_START_NODE';
+export const DRAGGING_END_NODE = 'DRAGGING_END_NODE';
+export const DRAWING_WALL = 'DRAWING_WALL';
 export const GRID_ROWS = 15;
 export const GRID_COLUMNS = 40;

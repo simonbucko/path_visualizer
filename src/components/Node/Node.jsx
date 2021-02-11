@@ -12,6 +12,7 @@ const Node = ({
   startNodePosition,
   handleMouseEntered,
   handleMouseRelease,
+  isWall,
 }) => {
   //   const [isStart, setIsStart] = useState(isStartNode);
 
@@ -33,11 +34,12 @@ const Node = ({
 
   const startNodeClass = isStartNode && "startingNode";
   const endNodeClass = isEndNode && "endingNode";
+  const wallClass = isWall && "wallNode";
 
   return (
     <div
       id={id}
-      className={`node ${startNodeClass} ${endNodeClass}`}
+      className={`node ${startNodeClass} ${endNodeClass} ${wallClass}`}
       onMouseDown={(e) => onMouseDown(e)}
       onMouseEnter={(e) => onMouseEnter(e)}
       onMouseUp={(e) => onMouseUp(e)}

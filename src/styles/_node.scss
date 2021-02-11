@@ -1,5 +1,6 @@
 .node {
   border: em(0.5) solid black;
+  cursor: pointer;
 }
 
 .startingNode {
@@ -10,4 +11,8 @@
 .endingNode {
   background-color: green;
   cursor: grab;
+}
+
+.wallNode {
+  background-color: black;
 }
