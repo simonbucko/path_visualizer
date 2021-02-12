@@ -17,7 +17,7 @@
   background-color: black;
 }
 
-.solution {
+.visited {
   background-color: blueviolet;
 }
 
@@ -25,10 +25,10 @@
   background-color: yellow;
 }
 
-.solution.startingNode {
+.visited.startingNode {
   background-color: red;
 }
 
-.solution.endingNode {
+.visited.endingNode {
   background-color: green;
 }

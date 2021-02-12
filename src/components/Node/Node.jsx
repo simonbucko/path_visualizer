@@ -32,11 +32,12 @@ const Node = ({
   const startNodeClass = isStartNode && "startingNode";
   const endNodeClass = isEndNode && "endingNode";
   const wallClass = isWall && "wallNode";
+  const visitedClass = isVisited && "visited";
 
   return (
     <div
       id={id}
-      className={`node ${startNodeClass} ${endNodeClass} ${wallClass}`}
+      className={`node ${startNodeClass} ${endNodeClass} ${wallClass} ${visitedClass}`}
       onMouseDown={(e) => onMouseDown(e)}
       onMouseEnter={(e) => onMouseEnter(e)}
       onMouseUp={(e) => onMouseUp(e)}

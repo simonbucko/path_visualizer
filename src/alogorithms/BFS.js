@@ -8,6 +8,8 @@ const vectorX = [0, 1, 0, -1];
 const vectorY = [1, 0, -1, 0];
 
 export const BFS = (grid, startNode, endNode) => {
+    clearPreviousSolution(grid);
+    clearIsVisited(grid)
     path = [];
     queue = [];
     solution = [];
@@ -35,8 +37,6 @@ export const BFS = (grid, startNode, endNode) => {
         }
     }
     visualizeBFS(wasSolvable);
-    clearIsVisited(grid)
-
     return path;
 }
 
@@ -66,7 +66,7 @@ const clearIsVisited = (grid) => {
 const visualizeBFS = (wasSolvable) => {
     const interval = setInterval(() => {
         const currentNode = solution.shift();
-        document.getElementById(currentNode.id).classList.add('solution')
+        document.getElementById(currentNode.id).classList.add('visited')
 
         if (solution.length == 0) {
             clearInterval(interval)
@@ -78,8 +78,16 @@ const visualizeBFS = (wasSolvable) => {
 const visualizePath = () => {
     const interval = setInterval(() => {
         const currentNode = path.shift();
-        console.log(currentNode)
         document.getElementById(currentNode.id).classList.add('path')
         if (path.length == 0) clearInterval(interval)
     }, PATH_SPEED)
+}
+
+export const clearPreviousSolution = (grid) => {
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            document.getElementById(grid[i][j].id).classList.remove('visited')
+            document.getElementById(grid[i][j].id).classList.remove('path')
+        }
+    }
 }
