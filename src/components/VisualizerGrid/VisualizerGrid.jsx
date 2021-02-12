@@ -34,7 +34,6 @@ const VisualizerGrid = ({ isAlgoRunning }) => {
       const startNode = GRID[startNodePosition.row][startNodePosition.column];
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
       const path = BFS(GRID, startNode, endNode);
-      console.log(path);
     }
   }, [isAlgoRunning]);
 
@@ -53,7 +52,6 @@ const VisualizerGrid = ({ isAlgoRunning }) => {
     else {
       setMouseAction(DRAWING_WALL);
       GRID[row][column].isWall = !GRID[row][column].isWall;
-      forceUpdate();
     }
   };
   //onMouseEnter
@@ -121,7 +119,6 @@ const VisualizerGrid = ({ isAlgoRunning }) => {
             key={node.id}
             id={node.id}
             isVisited={node.isVisited}
-            startNodePosition={startNodePosition}
             isStartNode={node.isStartNode}
             isEndNode={node.isEndNode}
             isWall={node.isWall}

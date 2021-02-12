@@ -9,13 +9,10 @@ const Node = ({
   isStartNode,
   isEndNode,
   handleMousePressed,
-  startNodePosition,
   handleMouseEntered,
   handleMouseRelease,
   isWall,
 }) => {
-  //   const [isStart, setIsStart] = useState(isStartNode);
-
   const onMouseDown = (e) => {
     e.preventDefault();
     handleMousePressed(id);
@@ -46,8 +43,16 @@ const Node = ({
     ></div>
   );
 };
-//   ,
+//  ,
 //   (prevProps, nextProps) => {
+//     if (
+//       prevProps.isWall !== nextProps.isWall ||
+//       prevProps.isStartNode !== nextProps.isStartNode ||
+//       prevProps.isEndNode !== nextProps.isEndNode ||
+//       prevProps.isVisited !== nextProps.isVisited
+//     )
+//       return false;
+//     return true;
 //     //if returns false render, if returns true will not render
 //   }
 // );

@@ -11,3 +11,5 @@ export const DEFAULT_END_NODE = {
     row: 7,//7
     column: 30,//30
 };
+export const SOLUTION_SPEED = 10;
+export const PATH_SPEED = 25;

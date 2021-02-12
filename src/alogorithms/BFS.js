@@ -1,4 +1,4 @@
-import { GRID_COLUMNS, GRID_ROWS } from '../components/VisualizerGrid/constants'
+import { GRID_COLUMNS, GRID_ROWS, SOLUTION_SPEED, PATH_SPEED } from '../components/VisualizerGrid/constants'
 
 let path = []
 let queue = []
@@ -25,7 +25,7 @@ export const BFS = (grid, startNode, endNode) => {
     }
     //backtrack path from start node to end node
     if (wasSolvable) {
-        //get previous node from end node
+        //get previous node from endnode
         const [row, column] = grid[endNode.row][endNode.column].visitedFrom.split(' ');
         let currentNode = grid[row][column];
         while ((currentNode.row !== startNode.row) || (currentNode.column !== startNode.column)) {
@@ -63,26 +63,23 @@ const clearIsVisited = (grid) => {
     }
 }
 
-const visualizeBFS = () => {
+const visualizeBFS = (wasSolvable) => {
     const interval = setInterval(() => {
         const currentNode = solution.shift();
         document.getElementById(currentNode.id).classList.add('solution')
+
         if (solution.length == 0) {
             clearInterval(interval)
-            visualizePath();
+            if (wasSolvable) visualizePath();
         }
-    }, 10)
+    }, SOLUTION_SPEED)
 }
 
 const visualizePath = () => {
     const interval = setInterval(() => {
         const currentNode = path.shift();
+        console.log(currentNode)
         document.getElementById(currentNode.id).classList.add('path')
         if (path.length == 0) clearInterval(interval)
-    }, 25)
+    }, PATH_SPEED)
 }
-//need funtion to solve it and return array how were visited
-//need funtion to rendering visitedNodes from arry
-//store path along the way to be able to figure path
-
-//error moze byt kvoli tomu zeee tym ze si vytvaras dalsie linky pre objekty tak tie ovplyvnuju ich spravanie
