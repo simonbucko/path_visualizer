@@ -5,20 +5,15 @@ import Node from "../Node/Node";
 
 //utils
 import {
-  GRID_ROWS,
-  GRID_COLUMNS,
   DRAGGING_START_NODE,
   DRAGGING_END_NODE,
   DRAWING_WALL,
   DEFAULT_START_NODE,
   DEFAULT_END_NODE,
 } from "./constants";
-import { createGrid } from "./functions";
 import { BFS } from "../../alogorithms/BFS";
 
-const GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
-
-const VisualizerGrid = ({ isAlgoRunning, onRunAlgo }) => {
+const VisualizerGrid = ({ isAlgoRunning, GRID, disabled }) => {
   //for forcing react to update
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -114,7 +109,7 @@ const VisualizerGrid = ({ isAlgoRunning, onRunAlgo }) => {
   };
 
   return (
-    <div className={"grid"} disabled={isAlgoRunning}>
+    <div className={"grid"} disabled={disabled}>
       {GRID.map((row) => {
         return row.map((node) => (
           <Node
