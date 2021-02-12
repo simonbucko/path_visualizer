@@ -32,7 +32,9 @@ export const BFS = (grid, startNode, endNode) => {
             currentNode = grid[row][column];
         }
     }
+    visualizeBFS();
     clearIsVisited(grid)
+
     return path;
 }
 
@@ -59,6 +61,12 @@ const clearIsVisited = (grid) => {
     }
 }
 
+const visualizeBFS = () => {
+    setInterval(() => {
+        const currentNode = solution.shift();
+        document.getElementById(currentNode.id).classList.add('solution')
+    }, 10)
+}
 //need funtion to solve it and return array how were visited
 //need funtion to rendering visitedNodes from arry
 //store path along the way to be able to figure path
