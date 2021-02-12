@@ -21,6 +21,14 @@
   background-color: blueviolet;
 }
 
+.path {
+  background-color: yellow;
+}
+
 .solution.startingNode {
   background-color: red;
+}
+
+.solution.endingNode {
+  background-color: green;
 }

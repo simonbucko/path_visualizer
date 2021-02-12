@@ -25,14 +25,16 @@ export const BFS = (grid, startNode, endNode) => {
     }
     //backtrack path from start node to end node
     if (wasSolvable) {
-        let currentNode = endNode;
+        //get previous node from end node
+        const [row, column] = grid[endNode.row][endNode.column].visitedFrom.split(' ');
+        let currentNode = grid[row][column];
         while ((currentNode.row !== startNode.row) || (currentNode.column !== startNode.column)) {
             path.unshift(currentNode);
             const [row, column] = currentNode.visitedFrom.split(' ')
             currentNode = grid[row][column];
         }
     }
-    visualizeBFS();
+    visualizeBFS(wasSolvable);
     clearIsVisited(grid)
 
     return path;
@@ -62,10 +64,22 @@ const clearIsVisited = (grid) => {
 }
 
 const visualizeBFS = () => {
-    setInterval(() => {
+    const interval = setInterval(() => {
         const currentNode = solution.shift();
         document.getElementById(currentNode.id).classList.add('solution')
+        if (solution.length == 0) {
+            clearInterval(interval)
+            visualizePath();
+        }
     }, 10)
+}
+
+const visualizePath = () => {
+    const interval = setInterval(() => {
+        const currentNode = path.shift();
+        document.getElementById(currentNode.id).classList.add('path')
+        if (path.length == 0) clearInterval(interval)
+    }, 25)
 }
 //need funtion to solve it and return array how were visited
 //need funtion to rendering visitedNodes from arry
