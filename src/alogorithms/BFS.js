@@ -7,7 +7,8 @@ let solution = []
 const vectorX = [0, 1, 0, -1];
 const vectorY = [1, 0, -1, 0];
 
-export const BFS = (grid, startNode, endNode) => {
+export const BFS = (grid, startNode, endNode, isVisualized) => {
+    document.getElementById('grid').classList.add('disabled')
     clearPreviousSolution(grid);
     clearIsVisited(grid)
     path = [];
@@ -36,7 +37,8 @@ export const BFS = (grid, startNode, endNode) => {
             currentNode = grid[row][column];
         }
     }
-    visualizeBFS(wasSolvable);
+    if (isVisualized) visualizeInstantlyBFS(wasSolvable)
+    else visualizeBFS(wasSolvable)
     return path;
 }
 
@@ -79,8 +81,26 @@ const visualizePath = () => {
     const interval = setInterval(() => {
         const currentNode = path.shift();
         document.getElementById(currentNode.id).classList.add('path')
-        if (path.length == 0) clearInterval(interval)
+        if (path.length == 0) {
+            clearInterval(interval)
+            document.getElementById('grid').classList.remove('disabled')
+
+        }
     }, PATH_SPEED)
+}
+
+const visualizeInstantlyBFS = (wasSolvable) => {
+    solution.forEach(node => {
+        document.getElementById(node.id).classList.add('visited')
+    })
+    if (wasSolvable) visualizeInstantPath();
+    document.getElementById('grid').classList.remove('disabled')
+}
+
+const visualizeInstantPath = () => {
+    path.forEach(node => {
+        document.getElementById(node.id).classList.add('path')
+    })
 }
 
 export const clearPreviousSolution = (grid) => {

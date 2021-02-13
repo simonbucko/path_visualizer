@@ -13,7 +13,7 @@ import {
 } from "./constants";
 import { BFS } from "../../alogorithms/BFS";
 
-const VisualizerGrid = ({ isAlgoRunning, GRID, disabled }) => {
+const VisualizerGrid = ({ isAlgoRunning, GRID }) => {
   //for forcing react to update
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -26,11 +26,9 @@ const VisualizerGrid = ({ isAlgoRunning, GRID, disabled }) => {
 
   useEffect(() => {
     if (isAlgoRunning > 0) {
-      //   onRunAlgo();
       const startNode = GRID[startNodePosition.row][startNodePosition.column];
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
-      const path = BFS(GRID, startNode, endNode);
-      //   onRunAlgo();
+      const path = BFS(GRID, startNode, endNode, false);
     }
   }, [isAlgoRunning]);
 
@@ -109,7 +107,7 @@ const VisualizerGrid = ({ isAlgoRunning, GRID, disabled }) => {
   };
 
   return (
-    <div className={"grid"} disabled={disabled}>
+    <div id="grid" className={"grid"}>
       {GRID.map((row) => {
         return row.map((node) => (
           <Node
