@@ -12,6 +12,7 @@ const GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
 const App = () => {
   const [isAlgoRunning, setIsAlgoRunning] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [isAlgoVisualized, setIsAlgoVisualized] = useState(false);
 
   const handleStartAlgo = () => {
     setIsAlgoRunning(!isAlgoRunning);
@@ -22,6 +23,7 @@ const App = () => {
     clearPreviousSolution(GRID);
     setIsAlgoRunning(!isAlgoRunning);
     setIsDisabled(!isDisabled);
+    setIsAlgoVisualized(!isAlgoVisualized);
   };
 
   return (
@@ -29,11 +31,14 @@ const App = () => {
       <button onClick={handleStartAlgo} disabled={isDisabled}>
         Start algo
       </button>
-      <button onClick={hadleReset}>Reset</button>
+      <button onClick={hadleReset} id={"resetBtn"}>
+        Reset
+      </button>
       <VisualizerGrid
         isAlgoRunning={isAlgoRunning}
-        disabled={isDisabled}
         GRID={GRID}
+        isAlgoVisualized={isAlgoVisualized}
+        setIsAlgoVisualized={setIsAlgoVisualized}
       />
     </Fragment>
   );

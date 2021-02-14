@@ -9,6 +9,7 @@ const vectorY = [1, 0, -1, 0];
 
 export const BFS = (grid, startNode, endNode, isVisualized) => {
     document.getElementById('grid').classList.add('disabled')
+    document.getElementById('resetBtn').classList.add('disabled')
     clearPreviousSolution(grid);
     clearIsVisited(grid)
     path = [];
@@ -37,8 +38,8 @@ export const BFS = (grid, startNode, endNode, isVisualized) => {
             currentNode = grid[row][column];
         }
     }
-    if (isVisualized) visualizeInstantlyBFS(wasSolvable)
-    else visualizeBFS(wasSolvable)
+    if (isVisualized) visualizeInstantlyBFS(wasSolvable, grid)
+    else visualizeBFS(wasSolvable, grid)
     return path;
 }
 
@@ -65,41 +66,45 @@ const clearIsVisited = (grid) => {
     }
 }
 
-const visualizeBFS = (wasSolvable) => {
+const visualizeBFS = (wasSolvable, grid) => {
     const interval = setInterval(() => {
         const currentNode = solution.shift();
         document.getElementById(currentNode.id).classList.add('visited')
 
         if (solution.length == 0) {
             clearInterval(interval)
-            if (wasSolvable) visualizePath();
+            if (wasSolvable) visualizePath(grid);
         }
     }, SOLUTION_SPEED)
 }
 
-const visualizePath = () => {
+const visualizePath = (grid) => {
     const interval = setInterval(() => {
         const currentNode = path.shift();
         document.getElementById(currentNode.id).classList.add('path')
+        grid[currentNode.row][currentNode.column].isPath = true;
         if (path.length == 0) {
             clearInterval(interval)
             document.getElementById('grid').classList.remove('disabled')
-
+            document.getElementById('resetBtn').classList.remove('disabled')
         }
     }, PATH_SPEED)
 }
 
-const visualizeInstantlyBFS = (wasSolvable) => {
+const visualizeInstantlyBFS = (wasSolvable, grid) => {
     solution.forEach(node => {
         document.getElementById(node.id).classList.add('visited')
     })
-    if (wasSolvable) visualizeInstantPath();
+    if (wasSolvable) visualizeInstantPath(grid);
     document.getElementById('grid').classList.remove('disabled')
+    document.getElementById('resetBtn').classList.remove('disabled')
 }
 
-const visualizeInstantPath = () => {
+const visualizeInstantPath = (grid) => {
     path.forEach(node => {
+        console.log('adding to ', node.id)
         document.getElementById(node.id).classList.add('path')
+        grid[node.row][node.column].isPath = true;
     })
 }
 

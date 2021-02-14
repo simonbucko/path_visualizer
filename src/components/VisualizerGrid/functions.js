@@ -14,6 +14,7 @@ export const createGrid = (rows, columns) => {
                     isStartNode: true,
                     isEndNode: false,
                     isWall: false,
+                    isPath: false,
                     visitedFrom: "",
                 };
             } else if (i == DEFAULT_END_NODE.row && j == DEFAULT_END_NODE.column) {
@@ -26,6 +27,7 @@ export const createGrid = (rows, columns) => {
                     isStartNode: false,
                     isEndNode: true,
                     isWall: false,
+                    isPath: false,
                     visitedFrom: "",
                 };
             } else {
@@ -37,6 +39,7 @@ export const createGrid = (rows, columns) => {
                     isStartNode: false,
                     isEndNode: false,
                     isWall: false,
+                    isPath: false,
                     visitedFrom: "",
                 };
             }
@@ -44,3 +47,8 @@ export const createGrid = (rows, columns) => {
     }
     return grid;
 };
+
+export const visualizeAlgorithm = (algo, grid, startNode, endNode, isAlgoVisualized) => {
+    const path = algo(grid, startNode, endNode, isAlgoVisualized);
+    console.log(path)
+}
