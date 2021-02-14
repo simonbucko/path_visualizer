@@ -1,5 +1,9 @@
 import React, { Fragment, useState } from "react";
-import { GRID_ROWS, GRID_COLUMNS } from "./components/VisualizerGrid/constants";
+import {
+  GRID_ROWS,
+  GRID_COLUMNS,
+  ALGORITHMS,
+} from "./components/VisualizerGrid/constants";
 import { createGrid } from "./components/VisualizerGrid/functions";
 import { clearPreviousSolution } from "./alogorithms/BFS";
 //components
@@ -14,6 +18,7 @@ const App = () => {
   const [isAlgoRunning, setIsAlgoRunning] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [isAlgoVisualized, setIsAlgoVisualized] = useState(false);
+  const [selectedAlgo, setSelectedAlgo] = useState(ALGORITHMS[0]);
 
   const handleStartAlgo = () => {
     setIsAlgoRunning(!isAlgoRunning);
@@ -27,11 +32,22 @@ const App = () => {
     setIsAlgoVisualized(!isAlgoVisualized);
   };
 
+  const handleChange = (e) => {
+    setSelectedAlgo(e.target.value);
+  };
+
   return (
     <Fragment>
       <button onClick={handleStartAlgo} disabled={isDisabled}>
         Start algo
       </button>
+      <select onChange={handleChange} disabled={isDisabled}>
+        {ALGORITHMS.map((algo) => (
+          <option key={algo} value={algo}>
+            {algo}
+          </option>
+        ))}
+      </select>
       <button onClick={hadleReset} id={"resetBtn"}>
         Reset
       </button>
@@ -40,6 +56,7 @@ const App = () => {
         GRID={GRID}
         isAlgoVisualized={isAlgoVisualized}
         setIsAlgoVisualized={setIsAlgoVisualized}
+        selectedAlgo={selectedAlgo}
       />
     </Fragment>
   );

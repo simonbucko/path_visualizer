@@ -11,13 +11,13 @@ import {
   DEFAULT_START_NODE,
   DEFAULT_END_NODE,
 } from "./constants";
-import { BFS } from "../../alogorithms/BFS";
 import { visualizeAlgorithm } from "./functions";
 const VisualizerGrid = ({
   isAlgoRunning,
   GRID,
   isAlgoVisualized,
   setIsAlgoVisualized,
+  selectedAlgo,
 }) => {
   //for forcing react to update
   const [, updateState] = React.useState();
@@ -28,12 +28,18 @@ const VisualizerGrid = ({
   );
   const [endNodePosition, setEndNodePosition] = useState(DEFAULT_END_NODE);
   const [mouseAction, setMouseAction] = useState("");
-
+  //is called when run button is clicked
   useEffect(() => {
     if (isAlgoRunning) {
       const startNode = GRID[startNodePosition.row][startNodePosition.column];
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
-      visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
+      visualizeAlgorithm(
+        selectedAlgo,
+        GRID,
+        startNode,
+        endNode,
+        isAlgoVisualized
+      );
       setIsAlgoVisualized(!isAlgoVisualized);
     }
   }, [isAlgoRunning]);
@@ -42,7 +48,13 @@ const VisualizerGrid = ({
     if (isAlgoVisualized) {
       const startNode = GRID[startNodePosition.row][startNodePosition.column];
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
-      visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
+      visualizeAlgorithm(
+        selectedAlgo,
+        GRID,
+        startNode,
+        endNode,
+        isAlgoVisualized
+      );
     }
   }, [startNodePosition, endNodePosition]);
   //this way we ensure displaying path after rendering so we do not have empty square
@@ -50,7 +62,13 @@ const VisualizerGrid = ({
     if (mouseAction == DRAWING_WALL && isAlgoVisualized) {
       const startNode = GRID[startNodePosition.row][startNodePosition.column];
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
-      visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
+      visualizeAlgorithm(
+        selectedAlgo,
+        GRID,
+        startNode,
+        endNode,
+        isAlgoVisualized
+      );
     }
   }, [mouseAction]);
 
@@ -123,7 +141,13 @@ const VisualizerGrid = ({
           const startNode =
             GRID[startNodePosition.row][startNodePosition.column];
           const endNode = GRID[endNodePosition.row][endNodePosition.column];
-          visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
+          visualizeAlgorithm(
+            selectedAlgo,
+            GRID,
+            startNode,
+            endNode,
+            isAlgoVisualized
+          );
         }
         break;
 

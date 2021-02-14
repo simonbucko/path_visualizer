@@ -13,3 +13,4 @@ export const DEFAULT_END_NODE = {
 };
 export const SOLUTION_SPEED = 10;
 export const PATH_SPEED = 25;
+export const ALGORITHMS = ['BFS', 'DFS', 'DIJ']

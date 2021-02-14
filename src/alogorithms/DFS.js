@@ -1,25 +1,24 @@
 import { GRID_COLUMNS, GRID_ROWS, SOLUTION_SPEED, PATH_SPEED } from '../components/VisualizerGrid/constants'
 
 let path = []
-let queue = []
+let stack = []
 let solution = []
 //vectors down,right,up,left
 const vectorX = [0, 1, 0, -1];
 const vectorY = [1, 0, -1, 0];
 
-export const BFS = (grid, startNode, endNode, isVisualized) => {
-    //needs to diable this way bcs we need to enable buttons only when algo is finished(its done in path visualizer methods)
+export const DFS = (grid, startNode, endNode, isVisualized) => {
     document.getElementById('grid').classList.add('disabled')
     document.getElementById('resetBtn').classList.add('disabled')
     clearPreviousSolution(grid);//clearing classes
     clearIsVisited(grid)//clearing values of grid
     path = [];
-    queue = [];
+    stack = [];
     solution = [];
     let wasSolvable = false;
-    queue.push(grid[startNode.row][startNode.column]);
-    while (!!queue.length) {
-        const currentNode = queue.shift();
+    stack.push(grid[startNode.row][startNode.column]);
+    while (!!stack.length) {
+        const currentNode = stack.pop();
         solution.push(currentNode);
         grid[currentNode.row][currentNode.column].isVisited = true;
         if (currentNode.row == endNode.row && currentNode.column == endNode.column) {
@@ -39,8 +38,8 @@ export const BFS = (grid, startNode, endNode, isVisualized) => {
             currentNode = grid[row][column];
         }
     }
-    if (isVisualized) visualizeInstantlyBFS(wasSolvable, grid)
-    else visualizeBFS(wasSolvable, grid)
+    if (isVisualized) visualizeInstantlyDFS(wasSolvable, grid)
+    else visualizeDFS(wasSolvable, grid)
     return path;
 }
 
@@ -54,32 +53,20 @@ const findValidNodes = (node, grid) => {
         else {
             grid[parseInt(row) + vectorX[i]][parseInt(column) + vectorY[i]].visitedFrom = node.id;
             adjacentNode.isVisited = true;
-            queue.push(adjacentNode);
+            stack.push(adjacentNode);
         }
     }
 }
 
-const clearIsVisited = (grid) => {
-    for (let i = 0; i < grid.length; i++) {
-        for (let j = 0; j < grid[i].length; j++) {
-            grid[i][j].isVisited = false;
-        }
-    }
-}
-
-const visualizeBFS = (wasSolvable, grid) => {
+const visualizeDFS = (wasSolvable, grid) => {
     const interval = setInterval(() => {
         const currentNode = solution.shift();
         document.getElementById(currentNode.id).classList.add('visited')
         if (solution.length == 0) {
             clearInterval(interval)
             if (wasSolvable) visualizePath(grid);
-            else {
-                document.getElementById('grid').classList.remove('disabled')
-                document.getElementById('resetBtn').classList.remove('disabled')
-            }
         }
-    }, SOLUTION_SPEED)
+    }, SOLUTION_SPEED * 5)
 }
 
 const visualizePath = (grid) => {
@@ -95,7 +82,7 @@ const visualizePath = (grid) => {
     }, PATH_SPEED)
 }
 
-const visualizeInstantlyBFS = (wasSolvable, grid) => {
+const visualizeInstantlyDFS = (wasSolvable, grid) => {
     solution.forEach(node => {
         document.getElementById(node.id).classList.add('visited')
     })
@@ -109,6 +96,16 @@ const visualizeInstantPath = (grid) => {
         document.getElementById(node.id).classList.add('path')
         grid[node.row][node.column].isPath = true;
     })
+}
+
+
+//TODO: create one place for clearVisited,clearPrevious,findValidNodes and for visualization functions bcs they are also in bfs
+const clearIsVisited = (grid) => {
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            grid[i][j].isVisited = false;
+        }
+    }
 }
 
 export const clearPreviousSolution = (grid) => {
