@@ -5,14 +5,12 @@ import React, { useState } from "react";
 //parent element renders
 const Node = ({
   id,
-  isVisited,
   isStartNode,
   isEndNode,
   handleMousePressed,
   handleMouseEntered,
   handleMouseRelease,
   isWall,
-  isPath,
 }) => {
   const onMouseDown = (e) => {
     e.preventDefault();
@@ -33,8 +31,6 @@ const Node = ({
   const startNodeClass = isStartNode && "startingNode";
   const endNodeClass = isEndNode && "endingNode";
   const wallClass = isWall && "wallNode";
-  // const pathClass = isPath && "path";
-  // const visitedClass = isVisited && "visited"
 
   return (
     <div

@@ -8,10 +8,11 @@ const vectorX = [0, 1, 0, -1];
 const vectorY = [1, 0, -1, 0];
 
 export const BFS = (grid, startNode, endNode, isVisualized) => {
+    //needs to diable this way bcs we need to enable buttons only when algo is finished
     document.getElementById('grid').classList.add('disabled')
     document.getElementById('resetBtn').classList.add('disabled')
-    clearPreviousSolution(grid);
-    clearIsVisited(grid)
+    clearPreviousSolution(grid);//clearing classes
+    clearIsVisited(grid)//clearing values of grid
     path = [];
     queue = [];
     solution = [];

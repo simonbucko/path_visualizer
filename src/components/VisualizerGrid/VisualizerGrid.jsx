@@ -30,14 +30,14 @@ const VisualizerGrid = ({
   const [mouseAction, setMouseAction] = useState("");
 
   useEffect(() => {
-    if (isAlgoRunning > 0) {
+    if (isAlgoRunning) {
       const startNode = GRID[startNodePosition.row][startNodePosition.column];
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
       visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
       setIsAlgoVisualized(!isAlgoVisualized);
     }
   }, [isAlgoRunning]);
-
+  //this way we ensure displaying path after rendering so we do not have empty square
   useEffect(() => {
     if (isAlgoVisualized) {
       const startNode = GRID[startNodePosition.row][startNodePosition.column];
@@ -45,7 +45,7 @@ const VisualizerGrid = ({
       visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
     }
   }, [startNodePosition, endNodePosition]);
-
+  //this way we ensure displaying path after rendering so we do not have empty square
   useEffect(() => {
     if (mouseAction == DRAWING_WALL && isAlgoVisualized) {
       const startNode = GRID[startNodePosition.row][startNodePosition.column];
@@ -69,7 +69,6 @@ const VisualizerGrid = ({
     else {
       setMouseAction(DRAWING_WALL);
       GRID[row][column].isWall = !GRID[row][column].isWall;
-      //TODO:refactor this into a function bcs its all over the place
     }
   };
   //onMouseEnter
@@ -119,6 +118,7 @@ const VisualizerGrid = ({
       case DRAWING_WALL:
         GRID[row][column].isWall = !GRID[row][column].isWall;
         forceUpdate();
+        //needs to be here bcs there is no other way how to prevent rendering after finding path resulting in one square bug
         if (isAlgoVisualized) {
           const startNode =
             GRID[startNodePosition.row][startNodePosition.column];
@@ -132,7 +132,7 @@ const VisualizerGrid = ({
     }
   };
   //onMouseUp
-  const handleMouseRelease = (id) => {
+  const handleMouseRelease = () => {
     setMouseAction("");
   };
 
@@ -143,11 +143,9 @@ const VisualizerGrid = ({
           <Node
             key={node.id}
             id={node.id}
-            isVisited={node.isVisited}
             isStartNode={node.isStartNode}
             isEndNode={node.isEndNode}
             isWall={node.isWall}
-            isPath={node.isPath}
             handleMousePressed={handleMousePressed}
             handleMouseEntered={handleMouseEntered}
             handleMouseRelease={handleMouseRelease}

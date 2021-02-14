@@ -7,6 +7,7 @@ import { VisualizerGrid } from "./components";
 //styles
 import "./styles/styles.scss";
 
+//grid need to be outside of component so it does not have diff reference each time and it is not affected with async useState, and also prevents unnecessary renders
 const GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
 
 const App = () => {
