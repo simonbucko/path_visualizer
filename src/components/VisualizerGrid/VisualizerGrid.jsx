@@ -13,7 +13,6 @@ import {
 } from "./constants";
 import { BFS } from "../../alogorithms/BFS";
 import { visualizeAlgorithm } from "./functions";
-
 const VisualizerGrid = ({
   isAlgoRunning,
   GRID,
@@ -126,7 +125,6 @@ const VisualizerGrid = ({
           const endNode = GRID[endNodePosition.row][endNodePosition.column];
           visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
         }
-
         break;
 
       default:

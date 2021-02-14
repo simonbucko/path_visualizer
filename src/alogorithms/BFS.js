@@ -70,7 +70,6 @@ const visualizeBFS = (wasSolvable, grid) => {
     const interval = setInterval(() => {
         const currentNode = solution.shift();
         document.getElementById(currentNode.id).classList.add('visited')
-
         if (solution.length == 0) {
             clearInterval(interval)
             if (wasSolvable) visualizePath(grid);
@@ -102,7 +101,6 @@ const visualizeInstantlyBFS = (wasSolvable, grid) => {
 
 const visualizeInstantPath = (grid) => {
     path.forEach(node => {
-        console.log('adding to ', node.id)
         document.getElementById(node.id).classList.add('path')
         grid[node.row][node.column].isPath = true;
     })
