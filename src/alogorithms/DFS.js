@@ -20,6 +20,7 @@ export const DFS = (grid, startNode, endNode, isVisualized) => {
     while (!!stack.length) {
         const currentNode = stack.pop();
         solution.push(currentNode);
+        if (grid[currentNode.row][currentNode.column].isVisited) continue;
         grid[currentNode.row][currentNode.column].isVisited = true;
         if (currentNode.row == endNode.row && currentNode.column == endNode.column) {
             wasSolvable = true;
@@ -52,7 +53,6 @@ const findValidNodes = (node, grid) => {
         if (adjacentNode.isWall || adjacentNode.isVisited) continue;
         else {
             grid[parseInt(row) + vectorX[i]][parseInt(column) + vectorY[i]].visitedFrom = node.id;
-            adjacentNode.isVisited = true;
             stack.push(adjacentNode);
         }
     }
@@ -65,8 +65,12 @@ const visualizeDFS = (wasSolvable, grid) => {
         if (solution.length == 0) {
             clearInterval(interval)
             if (wasSolvable) visualizePath(grid);
+            else {
+                document.getElementById('grid').classList.remove('disabled')
+                document.getElementById('resetBtn').classList.remove('disabled')
+            }
         }
-    }, SOLUTION_SPEED * 5)
+    }, SOLUTION_SPEED)
 }
 
 const visualizePath = (grid) => {
