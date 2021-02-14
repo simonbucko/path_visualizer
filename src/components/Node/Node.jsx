@@ -39,7 +39,7 @@ const Node = ({
   return (
     <div
       id={id}
-      className={`node ${startNodeClass} ${endNodeClass} ${wallClass} `}
+      className={`node ${startNodeClass} ${endNodeClass} ${wallClass}`}
       onMouseDown={(e) => onMouseDown(e)}
       onMouseEnter={(e) => onMouseEnter(e)}
       onMouseUp={(e) => onMouseUp(e)}

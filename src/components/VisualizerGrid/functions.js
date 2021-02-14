@@ -50,5 +50,4 @@ export const createGrid = (rows, columns) => {
 
 export const visualizeAlgorithm = (algo, grid, startNode, endNode, isAlgoVisualized) => {
     const path = algo(grid, startNode, endNode, isAlgoVisualized);
-    console.log(path)
 }

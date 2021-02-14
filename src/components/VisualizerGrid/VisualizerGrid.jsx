@@ -38,6 +38,22 @@ const VisualizerGrid = ({
     }
   }, [isAlgoRunning]);
 
+  useEffect(() => {
+    if (isAlgoVisualized) {
+      const startNode = GRID[startNodePosition.row][startNodePosition.column];
+      const endNode = GRID[endNodePosition.row][endNodePosition.column];
+      visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
+    }
+  }, [startNodePosition, endNodePosition]);
+
+  useEffect(() => {
+    if (mouseAction == DRAWING_WALL && isAlgoVisualized) {
+      const startNode = GRID[startNodePosition.row][startNodePosition.column];
+      const endNode = GRID[endNodePosition.row][endNodePosition.column];
+      visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
+    }
+  }, [mouseAction]);
+
   //onMouseDown
   const handleMousePressed = (id) => {
     const [row, column] = id.split(" ");
@@ -54,11 +70,6 @@ const VisualizerGrid = ({
       setMouseAction(DRAWING_WALL);
       GRID[row][column].isWall = !GRID[row][column].isWall;
       //TODO:refactor this into a function bcs its all over the place
-      if (isAlgoVisualized) {
-        const startNode = GRID[startNodePosition.row][startNodePosition.column];
-        const endNode = GRID[endNodePosition.row][endNodePosition.column];
-        visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
-      }
     }
   };
   //onMouseEnter
@@ -99,22 +110,11 @@ const VisualizerGrid = ({
         ].isStartNode = false;
         setStartNodePosition({ row: parseInt(row), column: parseInt(column) });
         GRID[row][column].isStartNode = true;
-        if (isAlgoVisualized) {
-          const startNode = GRID[parseInt(row)][parseInt(column)];
-          const endNode = GRID[endNodePosition.row][endNodePosition.column];
-          visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
-        }
         break;
       case DRAGGING_END_NODE:
         GRID[endNodePosition.row][endNodePosition.column].isEndNode = false;
         setEndNodePosition({ row: parseInt(row), column: parseInt(column) });
         GRID[row][column].isEndNode = true;
-        if (isAlgoVisualized) {
-          const startNode =
-            GRID[startNodePosition.row][startNodePosition.column];
-          const endNode = GRID[parseInt(row)][parseInt(column)];
-          visualizeAlgorithm(BFS, GRID, startNode, endNode, isAlgoVisualized);
-        }
         break;
       case DRAWING_WALL:
         GRID[row][column].isWall = !GRID[row][column].isWall;
