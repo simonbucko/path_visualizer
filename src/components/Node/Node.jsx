@@ -11,6 +11,7 @@ const Node = ({
   handleMouseEntered,
   handleMouseRelease,
   isWall,
+  isTree,
 }) => {
   const onMouseDown = (e) => {
     e.preventDefault();
@@ -39,7 +40,9 @@ const Node = ({
       onMouseDown={(e) => onMouseDown(e)}
       onMouseEnter={(e) => onMouseEnter(e)}
       onMouseUp={(e) => onMouseUp(e)}
-    ></div>
+    >
+      {isTree && <i className={"fas fa-tree"}></i>}
+    </div>
   );
 };
 //  ,

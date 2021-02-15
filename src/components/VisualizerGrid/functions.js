@@ -18,7 +18,7 @@ export const createGrid = (rows, columns) => {
                     isWall: false,
                     visitedFrom: "",
                     distance: null,
-                    isBomb: false
+                    isTree: false
                 };
             } else if (i == DEFAULT_END_NODE.row && j == DEFAULT_END_NODE.column) {
                 //create end node
@@ -32,7 +32,7 @@ export const createGrid = (rows, columns) => {
                     isWall: false,
                     visitedFrom: "",
                     distance: null,
-                    isBomb: false
+                    isTree: false
 
                 };
             } else {
@@ -46,7 +46,7 @@ export const createGrid = (rows, columns) => {
                     isWall: false,
                     visitedFrom: "",
                     distance: null,
-                    isBomb: false
+                    isTree: false
 
                 };
             }
