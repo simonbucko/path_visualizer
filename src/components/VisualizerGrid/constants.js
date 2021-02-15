@@ -14,4 +14,6 @@ export const DEFAULT_END_NODE = {
 };
 export const SOLUTION_SPEED = 10;
 export const PATH_SPEED = 25;
-export const ALGORITHMS = ['BFS', 'DFS', 'DIJ']
+export const ALGORITHMS = ['BFS', 'DFS', 'DIJ'];
+export const SQUARE_COST = 1;
+export const TREE_COST = 5;
