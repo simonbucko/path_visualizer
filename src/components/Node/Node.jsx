@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 //mui
 
 //memo will only render only if props or state changes, will not render if
