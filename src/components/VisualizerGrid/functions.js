@@ -71,3 +71,11 @@ export const visualizeAlgorithm = (algo, grid, startNode, endNode, isAlgoVisuali
     }
 
 }
+
+export const cleanTreesFromGrid = (grid) => {
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            grid[i][j].isTree = false
+        }
+    }
+}

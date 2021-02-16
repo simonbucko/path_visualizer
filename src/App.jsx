@@ -37,7 +37,7 @@ const App = () => {
   };
 
   return (
-    <Fragment>
+    <div className="app-wrapper">
       <button onClick={handleStartAlgo} disabled={isDisabled}>
         Start algo
       </button>
@@ -58,7 +58,7 @@ const App = () => {
         setIsAlgoVisualized={setIsAlgoVisualized}
         selectedAlgo={selectedAlgo}
       />
-    </Fragment>
+    </div>
   );
 };
 

@@ -4,8 +4,13 @@
   grid-auto-rows: minmax(em(50), auto);
   grid-gap: 0;
   border: em(2) solid black;
+  min-width: 1280px;
 }
 
 .disabled {
   pointer-events: none;
+}
+
+.app-wrapper {
+  max-width: 1500px;
 }

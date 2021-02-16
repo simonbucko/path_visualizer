@@ -11,8 +11,9 @@ import {
   DRAWING_TREE,
   DEFAULT_START_NODE,
   DEFAULT_END_NODE,
+  ALGORITHMS,
 } from "./constants";
-import { visualizeAlgorithm } from "./functions";
+import { visualizeAlgorithm, cleanTreesFromGrid } from "./functions";
 
 //ensure not rendering the component
 let isKeyPressed = false;
@@ -80,6 +81,13 @@ const VisualizerGrid = ({
     }
   }, [mouseAction]);
 
+  useEffect(() => {
+    if (selectedAlgo !== ALGORITHMS[2]) {
+      cleanTreesFromGrid(GRID);
+      forceUpdate();
+    }
+  }, [selectedAlgo]);
+
   //onKeyDown
   const handleKeyPressed = () => {
     if (isKeyPressed) return;
@@ -90,12 +98,10 @@ const VisualizerGrid = ({
     if (!isKeyPressed) return;
     isKeyPressed = false;
   };
-  //TODO:remove conditionaly listener based on type of algo
-  // document.removeEventListener("keydown", handleKeyPressed);
-  // document.removeEventListener("keyup", handleKeyRelease);
+
   //need to attach event listener this way otherwise div can not have on key pressed
-  document.addEventListener("keydown", handleKeyPressed);
-  document.addEventListener("keyup", handleKeyRelease);
+  document.addEventListener("keydown", handleKeyPressed, true);
+  document.addEventListener("keyup", handleKeyRelease, true);
 
   //onMouseDown
   const handleMousePressed = (id) => {
@@ -108,8 +114,8 @@ const VisualizerGrid = ({
     else if (row == endNodePosition.row && column == endNodePosition.column) {
       setMouseAction(DRAGGING_END_NODE);
     }
-    //handle drawing tree
-    else if (isKeyPressed) {
+    //handle drawing tree and check if we have dijkstras algo
+    else if (selectedAlgo == ALGORITHMS[2] && isKeyPressed) {
       setMouseAction(DRAWING_TREE);
       GRID[row][column].isTree = !GRID[row][column].isTree;
       GRID[row][column].isWall = false;
