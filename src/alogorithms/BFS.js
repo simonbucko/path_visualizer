@@ -1,4 +1,5 @@
-import { GRID_COLUMNS, GRID_ROWS, SOLUTION_SPEED, PATH_SPEED } from '../components/VisualizerGrid/constants'
+import { GRID_COLUMNS, GRID_ROWS } from '../components/VisualizerGrid/constants'
+import { clearIsVisited, clearPreviousSolution, visualize, visualizeInstantly } from './functions'
 
 let path = []
 let queue = []
@@ -39,8 +40,8 @@ export const BFS = (grid, startNode, endNode, isVisualized) => {
             currentNode = grid[row][column];
         }
     }
-    if (isVisualized) visualizeInstantlyBFS(wasSolvable, grid)
-    else visualizeBFS(wasSolvable, grid)
+    if (isVisualized) visualizeInstantly(wasSolvable, grid, solution, path)
+    else visualize(wasSolvable, grid, solution, path)
     return path;
 }
 
@@ -59,63 +60,4 @@ const findValidNodes = (node, grid) => {
     }
 }
 
-const clearIsVisited = (grid) => {
-    for (let i = 0; i < grid.length; i++) {
-        for (let j = 0; j < grid[i].length; j++) {
-            grid[i][j].isVisited = false;
-        }
-    }
-}
 
-const visualizeBFS = (wasSolvable, grid) => {
-    const interval = setInterval(() => {
-        const currentNode = solution.shift();
-        document.getElementById(currentNode.id).classList.add('visited')
-        if (solution.length == 0) {
-            clearInterval(interval)
-            if (wasSolvable) visualizePath(grid);
-            else {
-                document.getElementById('grid').classList.remove('disabled')
-                document.getElementById('resetBtns').classList.remove('disabled')
-            }
-        }
-    }, SOLUTION_SPEED)
-}
-
-const visualizePath = (grid) => {
-    const interval = setInterval(() => {
-        const currentNode = path.shift();
-        document.getElementById(currentNode.id).classList.add('path')
-        grid[currentNode.row][currentNode.column].isPath = true;
-        if (path.length == 0) {
-            clearInterval(interval)
-            document.getElementById('grid').classList.remove('disabled')
-            document.getElementById('resetBtns').classList.remove('disabled')
-        }
-    }, PATH_SPEED)
-}
-
-const visualizeInstantlyBFS = (wasSolvable, grid) => {
-    solution.forEach(node => {
-        document.getElementById(node.id).classList.add('visited')
-    })
-    if (wasSolvable) visualizeInstantPath(grid);
-    document.getElementById('grid').classList.remove('disabled')
-    document.getElementById('resetBtns').classList.remove('disabled')
-}
-
-const visualizeInstantPath = (grid) => {
-    path.forEach(node => {
-        document.getElementById(node.id).classList.add('path')
-        grid[node.row][node.column].isPath = true;
-    })
-}
-
-export const clearPreviousSolution = (grid) => {
-    for (let i = 0; i < grid.length; i++) {
-        for (let j = 0; j < grid[i].length; j++) {
-            document.getElementById(grid[i][j].id).classList.remove('visited')
-            document.getElementById(grid[i][j].id).classList.remove('path')
-        }
-    }
-}

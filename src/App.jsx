@@ -5,7 +5,7 @@ import {
   ALGORITHMS,
 } from "./components/VisualizerGrid/constants";
 import { createGrid, clearBoard } from "./components/VisualizerGrid/functions";
-import { clearPreviousSolution } from "./alogorithms/BFS";
+import { clearPreviousSolution } from "./alogorithms/functions";
 //components
 import { VisualizerGrid } from "./components";
 //styles
