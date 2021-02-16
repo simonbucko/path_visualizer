@@ -8,10 +8,15 @@ import {
   DRAGGING_START_NODE,
   DRAGGING_END_NODE,
   DRAWING_WALL,
+  DRAWING_TREE,
   DEFAULT_START_NODE,
   DEFAULT_END_NODE,
 } from "./constants";
 import { visualizeAlgorithm } from "./functions";
+
+//ensure not rendering the component
+let isKeyPressed = false;
+
 const VisualizerGrid = ({
   isAlgoRunning,
   GRID,
@@ -72,6 +77,23 @@ const VisualizerGrid = ({
     }
   }, [mouseAction]);
 
+  //onKeyDown
+  const handleKeyPressed = () => {
+    if (isKeyPressed) return;
+    isKeyPressed = true;
+  };
+
+  const handleKeyRelease = () => {
+    if (!isKeyPressed) return;
+    isKeyPressed = false;
+  };
+  //TODO:remove conditionaly listener based on type of algo
+  // document.removeEventListener("keydown", handleKeyPressed);
+  // document.removeEventListener("keyup", handleKeyRelease);
+  //need to attach event listener this way otherwise div can not have on key pressed
+  document.addEventListener("keydown", handleKeyPressed);
+  document.addEventListener("keyup", handleKeyRelease);
+
   //onMouseDown
   const handleMousePressed = (id) => {
     const [row, column] = id.split(" ");
@@ -83,10 +105,17 @@ const VisualizerGrid = ({
     else if (row == endNodePosition.row && column == endNodePosition.column) {
       setMouseAction(DRAGGING_END_NODE);
     }
+    //handle drawing tree
+    else if (isKeyPressed) {
+      setMouseAction(DRAWING_TREE);
+      GRID[row][column].isTree = !GRID[row][column].isTree;
+      GRID[row][column].isWall = false;
+    }
     //handle drawing wall
     else {
       setMouseAction(DRAWING_WALL);
       GRID[row][column].isWall = !GRID[row][column].isWall;
+      GRID[row][column].isTree = false;
     }
   };
   //onMouseEnter
@@ -106,16 +135,16 @@ const VisualizerGrid = ({
       startNodePosition.column == column
     )
       return;
-    //prevent to put start node/end node to wall
+    //prevent to put start node/end node to wall or tree
     if (
       (mouseAction == DRAGGING_END_NODE ||
         mouseAction == DRAGGING_START_NODE) &&
-      GRID[row][column].isWall
+      (GRID[row][column].isWall || GRID[row][column].isTree)
     )
       return;
-    //prevent to draw wall in start/end node
+    //prevent to draw wall or tree in start/end node
     if (
-      mouseAction == DRAWING_WALL &&
+      (mouseAction == DRAWING_WALL || mouseAction == DRAWING_TREE) &&
       (GRID[row][column].isStartNode || GRID[row][column].isEndNode)
     )
       return;
@@ -135,8 +164,9 @@ const VisualizerGrid = ({
         break;
       case DRAWING_WALL:
         GRID[row][column].isWall = !GRID[row][column].isWall;
+        GRID[row][column].isTree = false;
         forceUpdate();
-        //needs to be here bcs there is no other way how to prevent rendering after finding path resulting in one square bug
+        //needs to be here bcs there is no other way how to prevent rendering after finding path resulting in white square bug
         if (isAlgoVisualized) {
           const startNode =
             GRID[startNodePosition.row][startNodePosition.column];
@@ -150,6 +180,23 @@ const VisualizerGrid = ({
           );
         }
         break;
+      case DRAWING_TREE:
+        GRID[row][column].isTree = !GRID[row][column].isTree;
+        GRID[row][column].isWall = false;
+        forceUpdate();
+        //needs to be here bcs there is no other way how to prevent rendering after finding path resulting in white square bug
+        if (isAlgoVisualized) {
+          const startNode =
+            GRID[startNodePosition.row][startNodePosition.column];
+          const endNode = GRID[endNodePosition.row][endNodePosition.column];
+          visualizeAlgorithm(
+            selectedAlgo,
+            GRID,
+            startNode,
+            endNode,
+            isAlgoVisualized
+          );
+        }
 
       default:
         break;
@@ -161,7 +208,7 @@ const VisualizerGrid = ({
   };
 
   return (
-    <div id="grid" className={"grid"}>
+    <div tabIndex={0} id="grid" className={"grid"} onKeyDown={handleKeyPressed}>
       {GRID.map((row) => {
         return row.map((node) => (
           <Node
@@ -170,6 +217,7 @@ const VisualizerGrid = ({
             isStartNode={node.isStartNode}
             isEndNode={node.isEndNode}
             isWall={node.isWall}
+            isTree={node.isTree}
             handleMousePressed={handleMousePressed}
             handleMouseEntered={handleMouseEntered}
             handleMouseRelease={handleMouseRelease}

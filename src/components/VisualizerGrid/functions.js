@@ -1,5 +1,5 @@
 import { DEFAULT_START_NODE, DEFAULT_END_NODE, ALGORITHMS } from './constants';
-import { BFS, DFS } from '../../alogorithms'
+import { BFS, DFS, Dijkstra } from '../../alogorithms'
 
 export const createGrid = (rows, columns) => {
     const grid = [[]];
@@ -18,7 +18,7 @@ export const createGrid = (rows, columns) => {
                     isWall: false,
                     visitedFrom: "",
                     distance: null,
-                    isBomb: false
+                    isTree: false
                 };
             } else if (i == DEFAULT_END_NODE.row && j == DEFAULT_END_NODE.column) {
                 //create end node
@@ -32,7 +32,7 @@ export const createGrid = (rows, columns) => {
                     isWall: false,
                     visitedFrom: "",
                     distance: null,
-                    isBomb: false
+                    isTree: false
 
                 };
             } else {
@@ -46,7 +46,7 @@ export const createGrid = (rows, columns) => {
                     isWall: false,
                     visitedFrom: "",
                     distance: null,
-                    isBomb: false
+                    isTree: false
 
                 };
             }
@@ -62,6 +62,9 @@ export const visualizeAlgorithm = (algo, grid, startNode, endNode, isAlgoVisuali
             break;
         case ALGORITHMS[1]: //DFS
             DFS(grid, startNode, endNode, isAlgoVisualized);
+            break;
+        case ALGORITHMS[2]: //DIJ
+            Dijkstra(grid, startNode, endNode, isAlgoVisualized);
             break;
         default:
             break;

@@ -1,6 +1,12 @@
 .node {
   border: em(0.5) solid black;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i {
+    font-size: em(40);
+  }
 }
 
 .startingNode {
