@@ -64,7 +64,10 @@ const VisualizerGrid = ({
   }, [startNodePosition, endNodePosition]);
   //this way we ensure displaying path after rendering so we do not have empty square
   useEffect(() => {
-    if (mouseAction == DRAWING_WALL && isAlgoVisualized) {
+    if (
+      (mouseAction == DRAWING_WALL || mouseAction == DRAWING_TREE) &&
+      isAlgoVisualized
+    ) {
       const startNode = GRID[startNodePosition.row][startNodePosition.column];
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
       visualizeAlgorithm(
