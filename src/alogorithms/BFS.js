@@ -10,7 +10,7 @@ const vectorY = [1, 0, -1, 0];
 export const BFS = (grid, startNode, endNode, isVisualized) => {
     //needs to diable this way bcs we need to enable buttons only when algo is finished(its done in path visualizer methods)
     document.getElementById('grid').classList.add('disabled')
-    document.getElementById('resetBtn').classList.add('disabled')
+    document.getElementById('resetBtns').classList.add('disabled')
     clearPreviousSolution(grid);//clearing classes
     clearIsVisited(grid)//clearing values of grid
     path = [];
@@ -76,7 +76,7 @@ const visualizeBFS = (wasSolvable, grid) => {
             if (wasSolvable) visualizePath(grid);
             else {
                 document.getElementById('grid').classList.remove('disabled')
-                document.getElementById('resetBtn').classList.remove('disabled')
+                document.getElementById('resetBtns').classList.remove('disabled')
             }
         }
     }, SOLUTION_SPEED)
@@ -90,7 +90,7 @@ const visualizePath = (grid) => {
         if (path.length == 0) {
             clearInterval(interval)
             document.getElementById('grid').classList.remove('disabled')
-            document.getElementById('resetBtn').classList.remove('disabled')
+            document.getElementById('resetBtns').classList.remove('disabled')
         }
     }, PATH_SPEED)
 }
@@ -101,7 +101,7 @@ const visualizeInstantlyBFS = (wasSolvable, grid) => {
     })
     if (wasSolvable) visualizeInstantPath(grid);
     document.getElementById('grid').classList.remove('disabled')
-    document.getElementById('resetBtn').classList.remove('disabled')
+    document.getElementById('resetBtns').classList.remove('disabled')
 }
 
 const visualizeInstantPath = (grid) => {

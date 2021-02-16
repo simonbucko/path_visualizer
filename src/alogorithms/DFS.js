@@ -9,7 +9,7 @@ const vectorY = [1, 0, -1, 0];
 
 export const DFS = (grid, startNode, endNode, isVisualized) => {
     document.getElementById('grid').classList.add('disabled')
-    document.getElementById('resetBtn').classList.add('disabled')
+    document.getElementById('resetBtns').classList.add('disabled')
     clearPreviousSolution(grid);//clearing classes
     clearIsVisited(grid)//clearing values of grid
     path = [];
@@ -67,7 +67,7 @@ const visualizeDFS = (wasSolvable, grid) => {
             if (wasSolvable) visualizePath(grid);
             else {
                 document.getElementById('grid').classList.remove('disabled')
-                document.getElementById('resetBtn').classList.remove('disabled')
+                document.getElementById('resetBtns').classList.remove('disabled')
             }
         }
     }, SOLUTION_SPEED)
@@ -81,7 +81,7 @@ const visualizePath = (grid) => {
         if (path.length == 0) {
             clearInterval(interval)
             document.getElementById('grid').classList.remove('disabled')
-            document.getElementById('resetBtn').classList.remove('disabled')
+            document.getElementById('resetBtns').classList.remove('disabled')
         }
     }, PATH_SPEED)
 }
@@ -92,7 +92,7 @@ const visualizeInstantlyDFS = (wasSolvable, grid) => {
     })
     if (wasSolvable) visualizeInstantPath(grid);
     document.getElementById('grid').classList.remove('disabled')
-    document.getElementById('resetBtn').classList.remove('disabled')
+    document.getElementById('resetBtns').classList.remove('disabled')
 }
 
 const visualizeInstantPath = (grid) => {
