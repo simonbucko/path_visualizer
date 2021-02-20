@@ -3,6 +3,7 @@ import {
   GRID_ROWS,
   GRID_COLUMNS,
   ALGORITHMS,
+  USER_INPUT_SPEED,
 } from "./components/VisualizerGrid/constants";
 import { createGrid, clearBoard } from "./components/VisualizerGrid/functions";
 import { clearPreviousSolution } from "./alogorithms/functions";
@@ -20,6 +21,7 @@ const App = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isAlgoVisualized, setIsAlgoVisualized] = useState(false);
   const [selectedAlgo, setSelectedAlgo] = useState(ALGORITHMS[0]);
+  const [speed, setSpeed] = useState(USER_INPUT_SPEED);
 
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);
@@ -65,7 +67,7 @@ const App = () => {
         <button onClick={hadleResetSolution}>Reset Solution</button>
         <button onClick={handleClearBord}>Clear Bord</button>
       </span>
-      <CustomSlider />
+      <CustomSlider setSpeed={setSpeed} disabled={isDisabled} />
 
       <VisualizerGrid
         isAlgoRunning={isAlgoRunning}
@@ -73,6 +75,7 @@ const App = () => {
         isAlgoVisualized={isAlgoVisualized}
         setIsAlgoVisualized={setIsAlgoVisualized}
         selectedAlgo={selectedAlgo}
+        speed={speed}
       />
     </div>
   );

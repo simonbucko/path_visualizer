@@ -55,16 +55,16 @@ export const createGrid = (rows, columns) => {
     return grid;
 };
 
-export const visualizeAlgorithm = (algo, grid, startNode, endNode, isAlgoVisualized) => {
+export const visualizeAlgorithm = (algo, speed, grid, startNode, endNode, isAlgoVisualized) => {
     switch (algo) {
         case ALGORITHMS[0]: //BFS
-            BFS(grid, startNode, endNode, isAlgoVisualized);
+            BFS(grid, speed, startNode, endNode, isAlgoVisualized);
             break;
         case ALGORITHMS[1]: //DFS
-            DFS(grid, startNode, endNode, isAlgoVisualized);
+            DFS(grid, speed, startNode, endNode, isAlgoVisualized);
             break;
         case ALGORITHMS[2]: //DIJ
-            Dijkstra(grid, startNode, endNode, isAlgoVisualized);
+            Dijkstra(grid, speed, startNode, endNode, isAlgoVisualized);
             break;
         default:
             break;

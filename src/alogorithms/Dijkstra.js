@@ -10,7 +10,7 @@ let dist;
 //vectors down,right,up,left
 const vectorX = [0, 1, 0, -1];
 const vectorY = [1, 0, -1, 0];
-export const Dijkstra = (grid, startNode, endNode, isVisualized) => {
+export const Dijkstra = (grid, speed, startNode, endNode, isVisualized) => {
     document.getElementById('grid').classList.add('disabled')
     document.getElementById('resetBtns').classList.add('disabled')
     clearPreviousSolution(grid);//clearing classes
