@@ -40,8 +40,8 @@ const Node = ({
       onMouseUp={(e) => onMouseUp(e)}
     >
       {isTree && <i className={"fas fa-tree"}></i>}
-      {isStartNode && <i class="fas fa-location-arrow startingNode"></i>}
-      {isEndNode && <i class="fas fa-map-marker-alt endingNode"></i>}
+      {isStartNode && <i className="fas fa-location-arrow startingNode"></i>}
+      {isEndNode && <i className="fas fa-map-marker-alt endingNode"></i>}
     </div>
   );
 };

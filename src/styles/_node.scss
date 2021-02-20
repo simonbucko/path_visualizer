@@ -1,5 +1,5 @@
 .node {
-  border: em(0.5) solid black;
+  border: em(0.5) solid $borderColor;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -7,17 +7,15 @@
   i {
     font-size: em(40);
   }
+  background-color: white;
+  transition: 0.4s ease-in-out;
 }
 
 .startingNode {
-  background-color: yellow;
-
   cursor: grab;
 }
 
 .endingNode {
-  background-color: yellow;
-
   cursor: grab;
 }
 
@@ -26,11 +24,12 @@
 }
 
 .visited {
-  background-color: blueviolet;
+  animation: visited 1s linear both alternate;
 }
 
 .path {
-  background-color: yellow;
+  background-color: yellow !important;
+  animation: shortestPath 0.5s linear 1; //direction fill-mode
 }
 
 .visited.startingNode {
@@ -39,4 +38,43 @@
 
 .visited.endingNode {
   background-color: green;
+}
+
+@keyframes visited {
+  0% {
+    transform: scale(0.3);
+    background-color: rgba(0, 0, 66, 0.75);
+    border-radius: 100%;
+  }
+
+  50% {
+    background-color: rgba(17, 104, 217, 0.75);
+  }
+
+  75% {
+    transform: scale(1.2);
+    background-color: rgba(0, 217, 159, 0.75);
+  }
+
+  100% {
+    transform: scale(1);
+    background-color: rgba(0, 190, 218, 0.75);
+  }
+}
+
+@keyframes shortestPath {
+  0% {
+    transform: scale(0.6);
+    background-color: rgb(255, 254, 106);
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: rgb(255, 254, 106);
+  }
+
+  100% {
+    transform: scale(1);
+    background-color: rgb(255, 254, 106);
+  }
 }

@@ -3,7 +3,7 @@
   grid-template-columns: repeat(40, 1fr);
   grid-auto-rows: minmax(em(50), auto);
   grid-gap: 0;
-  border: em(2) solid black;
+  border: em(2) solid $borderColor;
   min-width: 1280px;
 }
 

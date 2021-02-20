@@ -32,13 +32,14 @@ export const BFS = (grid, startNode, endNode, isVisualized) => {
     //backtrack path from start node to end node
     if (wasSolvable) {
         //get previous node from endnode
-        const [row, column] = grid[endNode.row][endNode.column].visitedFrom.split(' ');
-        let currentNode = grid[row][column];
+        let currentNode = grid[endNode.row][endNode.column];
         while ((currentNode.row !== startNode.row) || (currentNode.column !== startNode.column)) {
             path.unshift(currentNode);
             const [row, column] = currentNode.visitedFrom.split(' ')
             currentNode = grid[row][column];
         }
+        //adding starting node manualy
+        path.unshift(grid[startNode.row][startNode.column])
     }
     if (isVisualized) visualizeInstantly(wasSolvable, grid, solution, path)
     else visualize(wasSolvable, grid, solution, path)
