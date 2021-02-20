@@ -14,6 +14,10 @@ import "./styles/styles.scss";
 //grid need to be outside of component so it does not have diff reference each time and it is not affected with async useState, and also prevents unnecessary renders
 let GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
 
+//TODO:add slider to change speed of algorithm
+//TODO:add animations
+//TODO:add icon as starting node and ending node
+
 const App = () => {
   const [isAlgoRunning, setIsAlgoRunning] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);

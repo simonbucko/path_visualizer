@@ -10,12 +10,14 @@
 }
 
 .startingNode {
-  background-color: red;
+  background-color: yellow;
+
   cursor: grab;
 }
 
 .endingNode {
-  background-color: green;
+  background-color: yellow;
+
   cursor: grab;
 }
 
@@ -32,7 +34,7 @@
 }
 
 .visited.startingNode {
-  background-color: red;
+  background-color: white;
 }
 
 .visited.endingNode {

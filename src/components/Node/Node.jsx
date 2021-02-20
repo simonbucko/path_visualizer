@@ -29,19 +29,19 @@ const Node = ({
     handleMouseRelease(id);
   };
 
-  const startNodeClass = isStartNode && "startingNode";
-  const endNodeClass = isEndNode && "endingNode";
   const wallClass = isWall && "wallNode";
 
   return (
     <div
       id={id}
-      className={`node ${startNodeClass} ${endNodeClass} ${wallClass}`}
+      className={`node  ${wallClass}`}
       onMouseDown={(e) => onMouseDown(e)}
       onMouseEnter={(e) => onMouseEnter(e)}
       onMouseUp={(e) => onMouseUp(e)}
     >
       {isTree && <i className={"fas fa-tree"}></i>}
+      {isStartNode && <i class="fas fa-location-arrow startingNode"></i>}
+      {isEndNode && <i class="fas fa-map-marker-alt endingNode"></i>}
     </div>
   );
 };
