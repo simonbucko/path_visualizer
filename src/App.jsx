@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import {
   GRID_ROWS,
   GRID_COLUMNS,
@@ -10,17 +10,19 @@ import { clearPreviousSolution } from "./alogorithms/functions";
 import { VisualizerGrid } from "./components";
 //styles
 import "./styles/styles.scss";
+import CustomSlider from "./components/Navbar/Slider/CustomSlider";
 
 //grid need to be outside of component so it does not have diff reference each time and it is not affected with async useState, and also prevents unnecessary renders
 let GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
-
-//TODO:add slider to change speed of algorithm
 
 const App = () => {
   const [isAlgoRunning, setIsAlgoRunning] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [isAlgoVisualized, setIsAlgoVisualized] = useState(false);
   const [selectedAlgo, setSelectedAlgo] = useState(ALGORITHMS[0]);
+
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   const handleStartAlgo = () => {
     setIsAlgoRunning(!isAlgoRunning);
@@ -42,8 +44,9 @@ const App = () => {
     clearPreviousSolution(GRID);
     clearBoard(GRID);
     setIsAlgoRunning(false);
-    setIsDisabled(false);
     setIsAlgoVisualized(false);
+    setIsDisabled(false);
+    forceUpdate();
   };
 
   return (
@@ -62,6 +65,7 @@ const App = () => {
         <button onClick={hadleResetSolution}>Reset Solution</button>
         <button onClick={handleClearBord}>Clear Bord</button>
       </span>
+      <CustomSlider />
 
       <VisualizerGrid
         isAlgoRunning={isAlgoRunning}
