@@ -15,8 +15,6 @@ import "./styles/styles.scss";
 let GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
 
 //TODO:add slider to change speed of algorithm
-//TODO:add animations
-//TODO:add icon as starting node and ending node
 
 const App = () => {
   const [isAlgoRunning, setIsAlgoRunning] = useState(false);
