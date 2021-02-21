@@ -14,6 +14,6 @@ export const DEFAULT_END_NODE = {
 };
 export const SOLUTION_SPEED = 50;//fast 1 10 30 50 100 slow
 export const PATH_SPEED = 35;
-export const ALGORITHMS = ['BFS', 'DFS', 'DIJ'];
+export const ALGORITHMS = [{ abbreviation: 'BFS', name: 'Breath-first Search' }, { abbreviation: 'DFS', name: 'Depth-first Search' }, { abbreviation: 'DIJ', name: "Dijkstra's Algorithm" }];
 export const SQUARE_COST = 1;
 export const TREE_COST = 5;

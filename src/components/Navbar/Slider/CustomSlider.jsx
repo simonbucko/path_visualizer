@@ -15,6 +15,7 @@ const CustomSlider = ({ setSpeed, disabled }) => {
       max={100}
       onChange={handleSliderChange}
       disabled={disabled}
+      style={{ width: "200px" }}
     />
   );
 };

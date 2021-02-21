@@ -57,13 +57,13 @@ export const createGrid = (rows, columns) => {
 
 export const visualizeAlgorithm = (algo, speed, grid, startNode, endNode, isAlgoVisualized) => {
     switch (algo) {
-        case ALGORITHMS[0]: //BFS
+        case ALGORITHMS[0].abbreviation: //BFS
             BFS(grid, speed, startNode, endNode, isAlgoVisualized);
             break;
-        case ALGORITHMS[1]: //DFS
+        case ALGORITHMS[1].abbreviation: //DFS
             DFS(grid, speed, startNode, endNode, isAlgoVisualized);
             break;
-        case ALGORITHMS[2]: //DIJ
+        case ALGORITHMS[2].abbreviation: //DIJ
             Dijkstra(grid, speed, startNode, endNode, isAlgoVisualized);
             break;
         default:

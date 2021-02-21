@@ -9,7 +9,6 @@ body {
   grid-template-columns: repeat(40, 1fr);
   grid-auto-rows: minmax(em(50), auto);
   grid-gap: 0;
-  border: em(2) solid $borderColor;
   min-width: 1640px;
 }
 
@@ -24,11 +23,40 @@ body {
 //NAVBAR
 nav {
   width: 100%;
+  min-width: 1640px;
   display: flex;
   justify-content: space-between;
   background-color: $navbarBg;
+  align-items: center;
+}
+
+#demo-simple-select-helper {
+  padding-top: em(9);
+  padding-bottom: em(9);
 }
 
 .path-icon {
   height: em(100);
+  padding: em(5) em(10);
+}
+
+.controls > *,
+#resetBtns > * {
+  margin: 0 em(10);
+}
+
+#resetBtns > *:first-child {
+  margin: 0;
+}
+
+.slider-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: em(10);
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  margin: 0 em(10);
 }

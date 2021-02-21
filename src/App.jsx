@@ -19,7 +19,7 @@ const App = () => {
   const [isAlgoRunning, setIsAlgoRunning] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [isAlgoVisualized, setIsAlgoVisualized] = useState(false);
-  const [selectedAlgo, setSelectedAlgo] = useState(ALGORITHMS[0]);
+  const [selectedAlgo, setSelectedAlgo] = useState(ALGORITHMS[0].abbreviation);
   const [speed, setSpeed] = useState(SOLUTION_SPEED);
 
   const [, updateState] = React.useState();

@@ -8,6 +8,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
+
+import useStyles from "./styles";
 
 const Navbar = ({
   isDisabled,
@@ -18,21 +23,23 @@ const Navbar = ({
   setSpeed,
   selectedAlgo,
 }) => {
+  const classes = useStyles();
   return (
     <nav>
       <img src={image} alt="path icon" className={"path-icon"} />
-      <div>
-        <FormControl variant="outlined">
+      <div className={"controls"}>
+        <FormControl variant="outlined" className={classes.formControl}>
           <Select
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
             value={selectedAlgo}
             onChange={handleChange}
             disabled={isDisabled}
+            className={classes.select}
           >
             {ALGORITHMS.map((algo) => (
-              <MenuItem key={algo} value={algo}>
-                {algo}
+              <MenuItem key={algo.abbreviation} value={algo.abbreviation}>
+                {algo.name}
               </MenuItem>
             ))}
           </Select>
@@ -68,7 +75,29 @@ const Navbar = ({
             HELP
           </Button>
         </span>
-        <CustomSlider setSpeed={setSpeed} disabled={isDisabled} />
+
+        <div className={"slider-wrapper"}>
+          <Tooltip
+            title={
+              <p style={{ letterSpacing: "1px", fontSize: "13px" }}>
+                Visualization Speed
+              </p>
+            }
+            arrow
+            TransitionComponent={Zoom}
+            className={classes.tooltip}
+          >
+            <div className={"slider"}>
+              <Typography variant="button" className={classes.textSlow}>
+                Slow
+              </Typography>
+              <CustomSlider setSpeed={setSpeed} disabled={isDisabled} />
+              <Typography variant="button" className={classes.textFast}>
+                Fast
+              </Typography>
+            </div>
+          </Tooltip>
+        </div>
       </div>
     </nav>
   );
