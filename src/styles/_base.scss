@@ -1,3 +1,9 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(40, 1fr);
@@ -13,4 +19,16 @@
 
 .app-wrapper {
   max-width: 2000px;
+}
+
+//NAVBAR
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: $navbarBg;
+}
+
+.path-icon {
+  height: em(100);
 }

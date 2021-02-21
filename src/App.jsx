@@ -59,6 +59,7 @@ const App = () => {
         hadleResetSolution={hadleResetSolution}
         handleClearBord={handleClearBord}
         setSpeed={setSpeed}
+        selectedAlgo={selectedAlgo}
       />
       <VisualizerGrid
         isAlgoRunning={isAlgoRunning}
