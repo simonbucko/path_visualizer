@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DrawWall, Intro, Algos } from "./Tabs";
+import { DrawWall, Intro, Algos, Welcome } from "./Tabs";
 import { AnimatePresence } from "framer-motion";
 //mui
 import Slide from "@material-ui/core/Slide";
@@ -31,6 +31,7 @@ const HelpDialog = ({ open, handleClose }) => {
   };
 
   const tabs = [
+    <Welcome slideLeft={slideLeft} />,
     <Intro slideLeft={slideLeft} />,
     <Algos slideLeft={slideLeft} />,
     <DrawWall slideLeft={slideLeft} />,
@@ -43,7 +44,7 @@ const HelpDialog = ({ open, handleClose }) => {
       fullWidth
       maxWidth="sm"
     >
-      <DialogTitle>Welcome to Path Solving Visualizer!</DialogTitle>
+      <DialogTitle>Welcome to Path Finding Visualizer!</DialogTitle>
       <DialogContent className={classes.dialogContent}>
         <AnimatePresence exitBeforeEnter>{tabs[activeStep]}</AnimatePresence>
         <MobileStepper
@@ -58,6 +59,7 @@ const HelpDialog = ({ open, handleClose }) => {
               onClick={handleNext}
               disabled={activeStep === 5}
               color="primary"
+              variant="contained"
             >
               Next
             </Button>
@@ -68,6 +70,7 @@ const HelpDialog = ({ open, handleClose }) => {
               onClick={handleBack}
               disabled={activeStep === 0}
               color="primary"
+              variant="contained"
             >
               Back
             </Button>

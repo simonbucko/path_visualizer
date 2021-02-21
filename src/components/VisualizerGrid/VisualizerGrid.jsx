@@ -86,7 +86,7 @@ const VisualizerGrid = ({
   }, [mouseAction]);
 
   useEffect(() => {
-    if (selectedAlgo !== ALGORITHMS[2]) {
+    if (selectedAlgo !== ALGORITHMS[2].abbreviation) {
       cleanTreesFromGrid(GRID);
       forceUpdate();
     }
@@ -119,7 +119,7 @@ const VisualizerGrid = ({
       setMouseAction(DRAGGING_END_NODE);
     }
     //handle drawing tree and check if we have dijkstras algo
-    else if (selectedAlgo == ALGORITHMS[2] && isKeyPressed) {
+    else if (selectedAlgo == ALGORITHMS[2].abbreviation && isKeyPressed) {
       setMouseAction(DRAWING_TREE);
       GRID[row][column].isTree = !GRID[row][column].isTree;
       GRID[row][column].isWall = false;
