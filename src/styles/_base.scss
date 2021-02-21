@@ -2,6 +2,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-y: hidden;
 }
 
 .grid {
@@ -59,4 +60,15 @@ nav {
   display: flex;
   align-items: center;
   margin: 0 em(10);
+}
+
+//help dialog
+body
+  > div.MuiDialog-root
+  > div.MuiDialog-container.MuiDialog-scrollPaper
+  > div
+  > div.MuiDialogTitle-root
+  > h2 {
+  font-size: 1.5rem;
+  text-align: center;
 }

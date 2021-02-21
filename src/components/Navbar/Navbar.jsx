@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomSlider from "./Slider/CustomSlider";
 import { ALGORITHMS } from "../VisualizerGrid/constants";
 import image from "../../assests/path.png";
+import HelpDialog from "./HelpDialog/HelpDialog";
 
 //mui
 import MenuItem from "@material-ui/core/MenuItem";
@@ -24,6 +25,15 @@ const Navbar = ({
   selectedAlgo,
 }) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(true);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <nav>
       <img src={image} alt="path icon" className={"path-icon"} />
@@ -71,9 +81,15 @@ const Navbar = ({
           >
             Clear Bord
           </Button>
-          <Button variant="contained" color="primary" size="medium">
+          <Button
+            variant="contained"
+            color="primary"
+            size="medium"
+            onClick={handleOpen}
+          >
             HELP
           </Button>
+          <HelpDialog handleClose={handleClose} open={open} />
         </span>
 
         <div className={"slider-wrapper"}>
