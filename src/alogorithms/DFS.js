@@ -8,7 +8,7 @@ let solution = []
 const vectorX = [0, 1, 0, -1];
 const vectorY = [1, 0, -1, 0];
 
-export const DFS = (grid, startNode, endNode, isVisualized) => {
+export const DFS = (grid, speed, startNode, endNode, isVisualized) => {
     document.getElementById('grid').classList.add('disabled')
     document.getElementById('resetBtns').classList.add('disabled')
     clearPreviousSolution(grid);//clearing classes
@@ -42,7 +42,7 @@ export const DFS = (grid, startNode, endNode, isVisualized) => {
         path.unshift(grid[startNode.row][startNode.column])
     }
     if (isVisualized) visualizeInstantly(wasSolvable, grid, solution, path)
-    else visualize(wasSolvable, grid, solution, path)
+    else visualize(speed, wasSolvable, grid, solution, path)
     return path;
 }
 

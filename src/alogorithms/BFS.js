@@ -8,12 +8,13 @@ let solution = []
 const vectorX = [0, 1, 0, -1];
 const vectorY = [1, 0, -1, 0];
 
-export const BFS = (grid, startNode, endNode, isVisualized) => {
+export const BFS = (grid, speed, startNode, endNode, isVisualized) => {
     //needs to diable this way bcs we need to enable buttons only when algo is finished(its done in path visualizer methods)
     document.getElementById('grid').classList.add('disabled')
     document.getElementById('resetBtns').classList.add('disabled')
     clearPreviousSolution(grid);//clearing classes
     clearIsVisited(grid)//clearing values of grid
+    console.log(speed)
     path = [];
     queue = [];
     solution = [];
@@ -42,7 +43,7 @@ export const BFS = (grid, startNode, endNode, isVisualized) => {
         path.unshift(grid[startNode.row][startNode.column])
     }
     if (isVisualized) visualizeInstantly(wasSolvable, grid, solution, path)
-    else visualize(wasSolvable, grid, solution, path)
+    else visualize(speed, wasSolvable, grid, solution, path)
     return path;
 }
 

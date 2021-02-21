@@ -24,6 +24,7 @@ const VisualizerGrid = ({
   isAlgoVisualized,
   setIsAlgoVisualized,
   selectedAlgo,
+  speed,
 }) => {
   //for forcing react to update
   const [, updateState] = React.useState();
@@ -41,6 +42,7 @@ const VisualizerGrid = ({
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
       visualizeAlgorithm(
         selectedAlgo,
+        speed,
         GRID,
         startNode,
         endNode,
@@ -56,6 +58,7 @@ const VisualizerGrid = ({
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
       visualizeAlgorithm(
         selectedAlgo,
+        speed,
         GRID,
         startNode,
         endNode,
@@ -73,6 +76,7 @@ const VisualizerGrid = ({
       const endNode = GRID[endNodePosition.row][endNodePosition.column];
       visualizeAlgorithm(
         selectedAlgo,
+        speed,
         GRID,
         startNode,
         endNode,
@@ -182,6 +186,7 @@ const VisualizerGrid = ({
           const endNode = GRID[endNodePosition.row][endNodePosition.column];
           visualizeAlgorithm(
             selectedAlgo,
+            speed,
             GRID,
             startNode,
             endNode,
@@ -200,6 +205,7 @@ const VisualizerGrid = ({
           const endNode = GRID[endNodePosition.row][endNodePosition.column];
           visualizeAlgorithm(
             selectedAlgo,
+            speed,
             GRID,
             startNode,
             endNode,
