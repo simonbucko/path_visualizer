@@ -39,7 +39,7 @@ const Node = ({
       onMouseEnter={(e) => onMouseEnter(e)}
       onMouseUp={(e) => onMouseUp(e)}
     >
-      {isTree && <i className={"fas fa-tree"}></i>}
+      {isTree && <i className={"fas fa-tree tree"}></i>}
       {isStartNode && <i className="fas fa-location-arrow startingNode"></i>}
       {isEndNode && <i className="fas fa-map-marker-alt endingNode"></i>}
     </div>

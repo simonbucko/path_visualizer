@@ -19,7 +19,11 @@
 }
 
 .wallNode {
-  background-color: black;
+  background-color: $navbarBg;
+}
+
+.tree {
+  color: $navbarBg;
 }
 
 .visited {
