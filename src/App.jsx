@@ -8,10 +8,9 @@ import {
 import { createGrid, clearBoard } from "./components/VisualizerGrid/functions";
 import { clearPreviousSolution } from "./alogorithms/functions";
 //components
-import { VisualizerGrid } from "./components";
+import { VisualizerGrid, Navbar } from "./components";
 //styles
 import "./styles/styles.scss";
-import CustomSlider from "./components/Navbar/Slider/CustomSlider";
 
 //grid need to be outside of component so it does not have diff reference each time and it is not affected with async useState, and also prevents unnecessary renders
 let GRID = createGrid(GRID_ROWS, GRID_COLUMNS);
@@ -53,22 +52,14 @@ const App = () => {
 
   return (
     <div className="app-wrapper">
-      <button onClick={handleStartAlgo} disabled={isDisabled}>
-        Start algo
-      </button>
-      <select onChange={handleChange} disabled={isDisabled}>
-        {ALGORITHMS.map((algo) => (
-          <option key={algo} value={algo}>
-            {algo}
-          </option>
-        ))}
-      </select>
-      <span id={"resetBtns"}>
-        <button onClick={hadleResetSolution}>Reset Solution</button>
-        <button onClick={handleClearBord}>Clear Bord</button>
-      </span>
-      <CustomSlider setSpeed={setSpeed} disabled={isDisabled} />
-
+      <Navbar
+        isDisabled={isDisabled}
+        handleStartAlgo={handleStartAlgo}
+        handleChange={handleChange}
+        hadleResetSolution={hadleResetSolution}
+        handleClearBord={handleClearBord}
+        setSpeed={setSpeed}
+      />
       <VisualizerGrid
         isAlgoRunning={isAlgoRunning}
         GRID={GRID}

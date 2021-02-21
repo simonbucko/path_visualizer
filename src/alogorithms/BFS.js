@@ -14,7 +14,6 @@ export const BFS = (grid, speed, startNode, endNode, isVisualized) => {
     document.getElementById('resetBtns').classList.add('disabled')
     clearPreviousSolution(grid);//clearing classes
     clearIsVisited(grid)//clearing values of grid
-    console.log(speed)
     path = [];
     queue = [];
     solution = [];

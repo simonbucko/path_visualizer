@@ -1,4 +1,4 @@
-import { SOLUTION_SPEED, PATH_SPEED } from '../components/VisualizerGrid/constants'
+import { PATH_SPEED } from '../components/VisualizerGrid/constants'
 
 export const clearIsVisited = (grid) => {
     for (let i = 0; i < grid.length; i++) {
@@ -21,7 +21,6 @@ export const visualize = (speed, wasSolvable, grid, solution, path) => {
             }
         }
     }, 100 - speed)
-    console.log(100 - speed)
 }
 
 const visualizePath = (grid, path) => {
