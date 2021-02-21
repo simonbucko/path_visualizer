@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { DrawWall, Intro, Algos } from "./Tabs";
+import { AnimatePresence } from "framer-motion";
 //mui
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";
@@ -17,16 +18,23 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const HelpDialog = ({ open, handleClose }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
+  const [slideLeft, setSlideLeft] = useState(true);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSlideLeft(true);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setSlideLeft(false);
   };
 
-  const tabs = [<Intro />, <Algos />, <DrawWall />];
+  const tabs = [
+    <Intro slideLeft={slideLeft} />,
+    <Algos slideLeft={slideLeft} />,
+    <DrawWall slideLeft={slideLeft} />,
+  ];
   return (
     <Dialog
       TransitionComponent={Transition}
@@ -36,8 +44,8 @@ const HelpDialog = ({ open, handleClose }) => {
       maxWidth="sm"
     >
       <DialogTitle>Welcome to Path Solving Visualizer!</DialogTitle>
-      <DialogContent>
-        {tabs[activeStep]}
+      <DialogContent className={classes.dialogContent}>
+        <AnimatePresence exitBeforeEnter>{tabs[activeStep]}</AnimatePresence>
         <MobileStepper
           variant="dots"
           steps={6}
