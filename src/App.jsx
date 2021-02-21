@@ -3,7 +3,7 @@ import {
   GRID_ROWS,
   GRID_COLUMNS,
   ALGORITHMS,
-  USER_INPUT_SPEED,
+  SOLUTION_SPEED,
 } from "./components/VisualizerGrid/constants";
 import { createGrid, clearBoard } from "./components/VisualizerGrid/functions";
 import { clearPreviousSolution } from "./alogorithms/functions";
@@ -21,7 +21,7 @@ const App = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isAlgoVisualized, setIsAlgoVisualized] = useState(false);
   const [selectedAlgo, setSelectedAlgo] = useState(ALGORITHMS[0]);
-  const [speed, setSpeed] = useState(USER_INPUT_SPEED);
+  const [speed, setSpeed] = useState(SOLUTION_SPEED);
 
   const [, updateState] = React.useState();
   const forceUpdate = React.useCallback(() => updateState({}), []);

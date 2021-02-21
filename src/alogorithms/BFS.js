@@ -14,6 +14,7 @@ export const BFS = (grid, speed, startNode, endNode, isVisualized) => {
     document.getElementById('resetBtns').classList.add('disabled')
     clearPreviousSolution(grid);//clearing classes
     clearIsVisited(grid)//clearing values of grid
+    console.log(speed)
     path = [];
     queue = [];
     solution = [];
@@ -42,7 +43,7 @@ export const BFS = (grid, speed, startNode, endNode, isVisualized) => {
         path.unshift(grid[startNode.row][startNode.column])
     }
     if (isVisualized) visualizeInstantly(wasSolvable, grid, solution, path)
-    else visualize(wasSolvable, grid, solution, path)
+    else visualize(speed, wasSolvable, grid, solution, path)
     return path;
 }
 

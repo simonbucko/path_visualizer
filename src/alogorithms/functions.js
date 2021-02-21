@@ -8,7 +8,7 @@ export const clearIsVisited = (grid) => {
     }
 }
 
-export const visualize = (wasSolvable, grid, solution, path) => {
+export const visualize = (speed, wasSolvable, grid, solution, path) => {
     const interval = setInterval(() => {
         const currentNode = solution.shift();
         document.getElementById(currentNode.id).classList.add('visited')
@@ -20,7 +20,8 @@ export const visualize = (wasSolvable, grid, solution, path) => {
                 document.getElementById('resetBtns').classList.remove('disabled')
             }
         }
-    }, SOLUTION_SPEED)
+    }, 100 - speed)
+    console.log(100 - speed)
 }
 
 const visualizePath = (grid, path) => {

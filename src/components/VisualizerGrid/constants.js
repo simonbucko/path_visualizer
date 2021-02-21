@@ -12,9 +12,8 @@ export const DEFAULT_END_NODE = {
     row: 7,//7
     column: 30,//30
 };
-export const SOLUTION_SPEED = 10;
-export const PATH_SPEED = 25;
-export const USER_INPUT_SPEED = 4;
+export const SOLUTION_SPEED = 50;//fast 1 10 30 50 100 slow
+export const PATH_SPEED = 35;
 export const ALGORITHMS = ['BFS', 'DFS', 'DIJ'];
 export const SQUARE_COST = 1;
 export const TREE_COST = 5;

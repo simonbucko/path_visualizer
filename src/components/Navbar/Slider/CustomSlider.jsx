@@ -1,20 +1,18 @@
 import React from "react";
-import { USER_INPUT_SPEED } from "../../VisualizerGrid/constants";
+import { SOLUTION_SPEED } from "../../VisualizerGrid/constants";
 //mui
 import Slider from "@material-ui/core/Slider";
 
 const CustomSlider = ({ setSpeed, disabled }) => {
-  const handleSliderChange = (newValue) => {
+  const handleSliderChange = (value, newValue) => {
     setSpeed(newValue);
   };
   return (
     <Slider
-      defaultValue={USER_INPUT_SPEED}
-      aria-labelledby="discrete-slider-custom"
-      step={1}
-      valueLabelDisplay="auto"
-      min={1}
-      max={7}
+      defaultValue={SOLUTION_SPEED}
+      aria-labelledby="continuous-slider"
+      min={10}
+      max={100}
       onChange={handleSliderChange}
       disabled={disabled}
     />
