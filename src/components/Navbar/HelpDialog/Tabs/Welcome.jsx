@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { slideLeftAnimation, slideRighttAnimation } from "./constants";
-import image from "../../../../assests/path.png";
+import image from "../../../../assests/imgs/path.png";
 
 //mui
 import Typography from "@material-ui/core/Typography";

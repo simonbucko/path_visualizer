@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { DrawWall, Intro, Algos, Welcome } from "./Tabs";
+import {
+  DrawWall,
+  Intro,
+  Algos,
+  Welcome,
+  ButtonsExpl,
+  Legend,
+  VisualChanges,
+} from "./Tabs";
 import { AnimatePresence } from "framer-motion";
 //mui
 import Slide from "@material-ui/core/Slide";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Typography from "@material-ui/core/Typography";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
 import useStyles from "./styles";
@@ -35,6 +42,9 @@ const HelpDialog = ({ open, handleClose }) => {
     <Intro slideLeft={slideLeft} />,
     <Algos slideLeft={slideLeft} />,
     <DrawWall slideLeft={slideLeft} />,
+    <ButtonsExpl slideLeft={slideLeft} />,
+    <Legend slideLeft={slideLeft} />,
+    <VisualChanges slideLeft={slideLeft} />,
   ];
   return (
     <Dialog
@@ -43,21 +53,22 @@ const HelpDialog = ({ open, handleClose }) => {
       onClose={handleClose}
       fullWidth
       maxWidth="sm"
+      className={classes.dialog}
     >
       <DialogTitle>Welcome to Path Finding Visualizer!</DialogTitle>
       <DialogContent className={classes.dialogContent}>
         <AnimatePresence exitBeforeEnter>{tabs[activeStep]}</AnimatePresence>
         <MobileStepper
           variant="dots"
-          steps={6}
+          steps={tabs.length}
           position="static"
           activeStep={activeStep}
-          className={classes.root}
+          className={classes.stepper}
           nextButton={
             <Button
               size="small"
               onClick={handleNext}
-              disabled={activeStep === 5}
+              disabled={activeStep === tabs.length - 1}
               color="primary"
               variant="contained"
             >

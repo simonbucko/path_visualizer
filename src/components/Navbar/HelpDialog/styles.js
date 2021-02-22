@@ -6,7 +6,17 @@ export default makeStyles((theme) => ({
     },
     dialogContent: {
         overflowX: 'hidden',
-        color: '#000344'
+        color: '#000344',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    },
+    stepper: {
+        background: 'white',
+    },
+    dialog: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
     }
-
 }))

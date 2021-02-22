@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 //components
-import Node from "../Node/Node";
+import Node from "./Node/Node";
 //mui
 
 //utils
@@ -27,8 +27,8 @@ const VisualizerGrid = ({
   speed,
 }) => {
   //for forcing react to update
-  const [, updateState] = React.useState();
-  const forceUpdate = React.useCallback(() => updateState({}), []);
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
 
   const [startNodePosition, setStartNodePosition] = useState(
     DEFAULT_START_NODE

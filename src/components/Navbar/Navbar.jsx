@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CustomSlider from "./Slider/CustomSlider";
 import { ALGORITHMS } from "../VisualizerGrid/constants";
-import image from "../../assests/path.png";
+import image from "../../assests/imgs/path.png";
 import HelpDialog from "./HelpDialog/HelpDialog";
 
 //mui

@@ -69,6 +69,26 @@ body
   > div {
   color: $navbarBg;
 }
+
+body
+  > div.MuiDialog-root
+  > div.MuiDialog-container.MuiDialog-scrollPaper
+  > div {
+  height: em(760);
+}
+
+body
+  > div.MuiDialog-root.makeStyles-dialog-12
+  > div.MuiDialog-container.MuiDialog-scrollPaper
+  > div
+  > div.MuiDialogContent-root.makeStyles-dialogContent-10
+  > div:nth-child(1) {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 body
   > div.MuiDialog-root
   > div.MuiDialog-container.MuiDialog-scrollPaper
@@ -101,4 +121,24 @@ body
 .algo-name {
   font-style: oblique;
   font-weight: bold;
+}
+
+.navbar-img {
+  display: flex;
+  justify-content: center;
+  img {
+    height: em(92);
+  }
+}
+
+.legend-li {
+  display: flex;
+  align-items: center;
+  margin-bottom: em(10);
+}
+
+.legend-icon {
+  margin-right: em(25);
+  width: em(30);
+  height: em(30);
 }
