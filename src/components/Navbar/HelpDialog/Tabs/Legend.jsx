@@ -20,6 +20,7 @@ const Legend = ({ slideLeft }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
+      className={"content-body"}
     >
       <Typography variant="h5" align="center">
         Legend

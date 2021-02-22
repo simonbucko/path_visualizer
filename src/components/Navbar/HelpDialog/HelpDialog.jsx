@@ -53,7 +53,6 @@ const HelpDialog = ({ open, handleClose }) => {
       onClose={handleClose}
       fullWidth
       maxWidth="sm"
-      className={classes.dialog}
     >
       <DialogTitle>Welcome to Path Finding Visualizer!</DialogTitle>
       <DialogContent className={classes.dialogContent}>

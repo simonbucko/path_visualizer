@@ -14,9 +14,4 @@ export default makeStyles((theme) => ({
     stepper: {
         background: 'white',
     },
-    dialog: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between'
-    }
 }))

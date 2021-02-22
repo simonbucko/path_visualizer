@@ -68,21 +68,10 @@ body
   > div.MuiDialog-container.MuiDialog-scrollPaper
   > div {
   color: $navbarBg;
-}
-
-body
-  > div.MuiDialog-root
-  > div.MuiDialog-container.MuiDialog-scrollPaper
-  > div {
   height: em(760);
 }
 
-body
-  > div.MuiDialog-root.makeStyles-dialog-12
-  > div.MuiDialog-container.MuiDialog-scrollPaper
-  > div
-  > div.MuiDialogContent-root.makeStyles-dialogContent-10
-  > div:nth-child(1) {
+.content-body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;

@@ -13,6 +13,7 @@ const Welcome = ({ slideLeft }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
+      className={"content-body"}
     >
       <Typography variant="h5" align="center" className={"tab-title"}>
         This short tutorial will walk you through all of the features of this

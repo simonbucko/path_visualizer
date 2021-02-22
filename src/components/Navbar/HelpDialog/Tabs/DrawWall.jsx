@@ -13,6 +13,7 @@ const DrawWall = ({ slideLeft }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
+      className={"content-body"}
     >
       <Typography variant="h5" align="center">
         Add Walls and Trees

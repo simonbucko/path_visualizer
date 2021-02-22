@@ -13,6 +13,7 @@ const Intro = ({ slideLeft }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
+      className={"content-body"}
     >
       <Typography variant="h5" align="center">
         What is a pathsolving algorithm?

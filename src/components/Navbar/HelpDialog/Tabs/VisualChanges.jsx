@@ -13,6 +13,7 @@ const VisualChanges = ({ slideLeft }) => {
       initial="hidden"
       animate="visible"
       exit="exit"
+      className={"content-body"}
     >
       <Typography variant="h5" align="center">
         Change the visualization instantly!
