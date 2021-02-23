@@ -14,4 +14,12 @@ export default makeStyles((theme) => ({
     stepper: {
         background: 'white',
     },
+
+    closeIcon: {
+        position: 'absolute',
+        right: '5px',
+        top: '5px',
+        fontSize: '35px !important',
+        cursor: 'pointer'
+    }
 }))

@@ -17,6 +17,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
 import useStyles from "./styles";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -54,6 +55,11 @@ const HelpDialog = ({ open, handleClose }) => {
       fullWidth
       maxWidth="sm"
     >
+      <CancelIcon
+        size="medium"
+        className={classes.closeIcon}
+        onClick={handleClose}
+      />
       <DialogTitle>Welcome to Path Finding Visualizer!</DialogTitle>
       <DialogContent className={classes.dialogContent}>
         <AnimatePresence exitBeforeEnter>{tabs[activeStep]}</AnimatePresence>
