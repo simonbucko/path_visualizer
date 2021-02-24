@@ -1,7 +1,7 @@
 # Path Finding Visualizer
 [Live Site](https://path-solving-visualizer.netlify.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://github.com/simonbucko/portfolio/blob/master/images/pathVisualizer.PNG" alt="pathvisualizer" height="500"/>
 
 ## Available Scripts
 
