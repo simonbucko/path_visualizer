@@ -16,6 +16,11 @@ export default makeStyles((theme) => ({
     },
     tooltip: {
         fontSize: '20px'
+    },
+    visualizeButton: {
+        backgroundColor: '#01dc01',
+        color: 'white'
     }
+
 
 }))

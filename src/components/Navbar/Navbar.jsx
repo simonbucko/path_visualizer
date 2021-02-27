@@ -57,7 +57,7 @@ const Navbar = ({
         <Button
           variant="contained"
           size="medium"
-          color="primary"
+          className={classes.visualizeButton}
           onClick={handleStartAlgo}
           disabled={isDisabled}
         >
