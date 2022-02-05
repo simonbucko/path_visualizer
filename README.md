@@ -1,7 +1,21 @@
 # Path Finding Visualizer
+
 [Live Site](https://path-solving-visualizer.netlify.app/)
 
 <img src="https://github.com/simonbucko/portfolio/blob/master/images/pathVisualizer.PNG" alt="pathvisualizer"/>
+
+## About
+
+Have you ever wondered how google maps find you the best and the fastest way from point A to point B? What kind of magic is behind it? Well, there is no magic! Just a bundle of algorithms and this project will help you to visualize and understand how those algorithms search and work
+
+## Used stack
+
+- React
+- Typescript
+- NodeJS
+- Express
+- MongoDB
+- STRIPE
 
 ## Available Scripts
 
