@@ -11,11 +11,7 @@ Have you ever wondered how google maps find you the best and the fastest way fro
 ## Used stack
 
 - React
-- Typescript
-- NodeJS
-- Express
-- MongoDB
-- STRIPE
+- SCSS
 
 ## Available Scripts
 
